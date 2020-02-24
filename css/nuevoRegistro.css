@@ -1,0 +1,139 @@
+.form-group row {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container-fluid {
+    padding: 60px 50px;
+    background-color: #D5F5E3;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #2ECC71;
+    z-index: 9999;
+    border: 0;
+    font-size: 14px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 2px;
+    border-radius: 0;
+}
+
+.navbar li a,
+.navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover,
+.navbar-nav li.active a {
+    color: #FDFEFE !important;
+    background-color: #138D75 !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+@media screen and (max-width: 500px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+
+    .col-sm-6 {
+        margin: 15px 0;
+    }
+}
+
+.image_carousel {
+    padding: 15px 0 15px 40px;
+    position: relative;
+    width: 580px;
+    background: #CCFFFF;
+    margin: 0px auto;
+    margin-top: 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #666666;
+}
+
+.image_carousel img {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 9px;
+    margin: 7px;
+    display: block;
+    float: left;
+}
+
+a.prev,
+a.next {
+    background: url(images/miscellaneous_sprite.png) no-repeat transparent;
+    width: 45px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    top: 85px;
+}
+
+a.prev {
+    left: -22px;
+    background-position: 0 0;
+}
+
+a.prev:hover {
+    background-position: 0 -50px;
+}
+
+a.prev.disabled {
+    background-position: 0 -100px !important;
+}
+
+a.next {
+    right: -22px;
+    background-position: -50px 0;
+}
+
+a.next:hover {
+    background-position: -50px -50px;
+}
+
+a.next.disabled {
+    background-position: -50px -100px !important;
+}
+
+a.prev.disabled,
+a.next.disabled {
+    cursor: default;
+}
+
+a.prev span,
+a.next span {
+    display: none;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a {
+    background: url(images/miscellaneous_sprite.png) 0 -300px no-repeat transparent;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px 0 0;
+    display: inline-block;
+}
+
+.pagination a.selected {
+    background-position: -25px -300px;
+    cursor: default;
+}
+
+.pagination a span {
+    display: none;
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
