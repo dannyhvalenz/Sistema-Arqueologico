@@ -57,10 +57,10 @@
                         Nombre del Usuario
                     </a>
                 </li>
-                <button class="btn btn-outline-light btn-lg " type="button">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a class="btn btn-outline-light btn-lg" href="operaciones/Sesion/cerrarSesion.php">
+                    <i class="fa fa-sign-out" onclick="cerrarSesion()" aria-hidden="true"></i>
                     Cerrar Sesion
-                </button>
+                </a>
             </form>
         </div>
     </nav>
@@ -100,6 +100,7 @@
     <!--SCRIPTS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     <script>
     $(document).ready(function() {
 
