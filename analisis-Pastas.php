@@ -1,15 +1,4 @@
 
-   <?php
-    $conexion=mysqli_connect("localhost","root","12345","abdarqueologia");
-    if (!$conexion) {
-        echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-        echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-        echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-        exit;
-    }else{
-        
-    }
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -32,6 +21,17 @@
 </head>
 
 <body>
+    <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
+    <?php
+        /*
+        session_start();
+
+        if(isset($_SESSION['usuario'])){                   
+        }else{
+            header("Location:login.php");
+        }*/
+    ?>
+
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -122,9 +122,7 @@
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } else {
-                load_data();
-            }
+            } 
         });
     });
     </script>
