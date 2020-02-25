@@ -20,12 +20,12 @@ Arqueólogo
 - [ ] Cerrar Sesión
 - [ ] Agregar registro de pastas (debe incluir imágenes)
 - [ ] Editar registro de pastas
-- [ ] Eliminar registro de pastas
-- [ ] Buscar registro de pastas
+- [x] Eliminar registro de pastas
+- [x] Buscar registro de pastas
 - [ ] Agregar conteo de colecciones
 - [ ] Editar conteo de colecciones
-- [ ] Eliminar conteo de colecciones
-- [ ] Buscar conteo de colecciones
+- [x] Eliminar conteo de colecciones
+- [x] Buscar conteo de colecciones
 
 
 
