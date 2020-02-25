@@ -10,11 +10,6 @@ if(isset($_POST["query"]))
   WHERE IdAnalisisPastas LIKE '%".$search."%'
   OR Tipo LIKE '%".$search."%'
  ";
- /* 
-  OR City LIKE '%".$search."%' 
-  OR PostalCode LIKE '%".$search."%' 
-  OR Country LIKE '%".$search."%'
-  */
 }
 else
 {
@@ -59,7 +54,7 @@ if(mysqli_num_rows($result) > 0)
     <td>'.$row["Fecha"].'</td>
     <td>'.$row["Cuadrante"].'</td>
     <td>'.$row["Sitio"].'</td>
-    <td>'.$row["Patrón"].'</td>
+    <td>'.$row["Patron"].'</td>
     <td>'.$row["Utme"].'</td>
     <td>'.$row["Utmn"].'</td>
     <td>'.$row["Latitud"].'</td>
@@ -67,15 +62,16 @@ if(mysqli_num_rows($result) > 0)
     <td>'.$row["Bolsa"].'</td>
     <td>'.$row["Tipo"].'</td>
     <td>'.$row["Tratamiento"].'</td>
-    <td>'.$row["Modificación"].'</td>
+    <td>'.$row["Modificacion"].'</td>
     <td>'.$row["FormasTratamientos"].'</td>
     <td>'.$row["Peso"].'</td>
     <td>'.$row["TotalFragmentos"].'</td>
     <td>'.$row["Observaciones"].'</td>
-    <td><a href=".php?matricula=<?php echo $mat ?>"
+    
+    <td><a href="../Sistema Arqueologico/operaciones/Analisis/editarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
         class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
     </td>
-    <td><a href=".php?matricula=<?php echo $mat ?>"
+    <td><a href="../Sistema Arqueologico/operaciones/Analisis/eliminarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
         class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
     </tr>
   ';

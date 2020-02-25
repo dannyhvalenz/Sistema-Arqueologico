@@ -1,4 +1,5 @@
-<?php
+
+   <?php
     $conexion=mysqli_connect("localhost","root","12345","abdarqueologia");
     if (!$conexion) {
         echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -18,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--ICONO-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="icons/favicon.ico" />
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -50,6 +51,12 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        Nombre del Usuario
+                    </a>
+                </li>
                 <button class="btn btn-outline-light btn-lg " type="button">
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     Cerrar Sesion
@@ -68,7 +75,7 @@
         <div class="row">
 
             <!--BOTON AGREGAR REGISTRO-->
-            <a href="nuevoRegistro.php" class="btn btn-success btn-lg">
+            <a href="nuevoRegistro-Pastas.php" class="btn btn-success btn-lg">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
                 Nuevo Registro
             </a>
@@ -76,7 +83,7 @@
             <form class="form-inline" style="margin-left:30px">
             <input type="text" name="search_text" id="search_text" placeholder="Buscar análisis" class="form-control" style="width:300px; margin-right:10px"/> 
             
-            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por Tipo o por ID" style="border-radius:50px;">
+            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por Tipo o ID" style="border-radius:50px;">
             <i class="fa fa-question" aria-hidden="true"></i>
             </button>  
             </form>
