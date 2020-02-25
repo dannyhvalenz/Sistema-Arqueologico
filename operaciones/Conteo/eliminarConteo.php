@@ -10,7 +10,7 @@
 
     if($resultado==true){   
         
-        header("Location: ../../../Sistema Arqueologico/conteo-Pastas.php");    
+        header("Location: ../../../Sistema Arqueologico/conteo-Colecciones.php");    
     }else{
         header("location: ../../paginas/presentacion/nodisponible.html");
     }

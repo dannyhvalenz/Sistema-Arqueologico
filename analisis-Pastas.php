@@ -47,7 +47,7 @@
                     <a class="nav-link" href="analisis-Pastas.php">Análsis de pastas <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="conteo-Pastas.php">Conteo de pastas</a>
+                    <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
