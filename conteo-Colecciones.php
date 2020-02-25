@@ -93,7 +93,7 @@
     <div class="table" id="result"></div>
     
     <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
-        Este es un proyecto para el gestionamiento de datos arqueologicos
+        Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 
     <!--SCRIPTS-->
