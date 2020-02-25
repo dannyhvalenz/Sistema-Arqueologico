@@ -168,7 +168,7 @@
         </form>
     </div>
     <div class="card-footer text-muted" style="margin-top:20px">
-        Este es un proyecto para el gestionamiento de datos arqueologicos
+        Este es un proyecto para el gestionamiento de datos arqueológicos
     </div>
 
     <script src="js/main.js"></script>
