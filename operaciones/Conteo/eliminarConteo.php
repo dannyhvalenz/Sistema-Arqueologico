@@ -9,9 +9,9 @@
 
     if($resultado==true){   
         
-        header("Location: ../../../Sistema Arqueologico/conteo-Colecciones.php");    
+        header("Location: ../../Paginas/Conteo/conteo-Colecciones.php");    
     }else{
-        header("location: ../../paginas/presentacion/nodisponible.html");
+        header("location: ../../Paginas/Otras/nodisponible.html");
     }
 
     mysqli_free_result($resultado);
