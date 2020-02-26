@@ -18,36 +18,14 @@
 
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script>
-    $(function() {
-        $("#file").on("change", function() {
-            /*Limpiar vista previa*/
-            $("#vista-previa").html('');
-            var archivos = document.getElementById('file').files; /*selecciono todos los archivos??*/
-            var navegador = window.URL || window.webkitURL;
-            /*Recorrer los archivos*/
-            for (x = 0; x < archivos.length; x++) {
-                /*validar tamaño y tipo de archivo*/
-                var size = archivos[x].size;
-                var type = archivos[x].type;
-                var name = archivos[x].name;
-                if (size > 1024 * 1204) {
-                    $("#vista-previa").append("<p style='color: red'>El archivo " + name +
-                        " supera el maximo permitido 1MB</p>");
-                } else if (type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png') {
-                    $("#vista-previa").append("<p style='color: blue'>El archivo " + name +
-                        " no es el tipo de imagen permitido</p>");
-                } else {
-                    var objeto_url = navegador.createObjectURL(archivos[x]);
-                    $("#vista-previa").append("<img src=" + objeto_url +
-                        " width='400' height='400'>"); /*aqui puedo conectar con el carrusel*/
-                }
-            }
-        });
-    });
-    </script>
+<style>
+    .col-6 {
+        padding-top:10px;
+    }
+    label{
+        font-size:12px;
+    }
+</style>
 </head>
 
 <body>
@@ -97,87 +75,88 @@
         <h2>Agregar Conteo de Colección</h2>
     </div>
     <div class="container" style="min-height:65vh">
-
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
         <form class="form-horizontal validate-form" action="../../operaciones/Conteo/crearConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="dropdown hierarchy-select" id="example">
-                        <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" id="example-two-button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                        <div class="dropdown-menu" aria-labelledby="example-two-button">
-                            <div class="hs-searchbox">
-                                <input type="text" class="form-control" autocomplete="off">
-                            </div>
-                            <div class="hs-menu-inner">
-                                <a class="dropdown-item" data-value="" data-default-selected="" href="#">Analisis de
-                            pastas</a>
-                                <a class="dropdown-item" data-value="1" href="#">Red</a>
-                                <a class="dropdown-item" data-value="2" href="#">Orange</a>
-                                <a class="dropdown-item" data-value="3" href="#">Yellow</a>
-                                <a class="dropdown-item" data-value="4" href="#">Green</a>
-                                <a class="dropdown-item" data-value="5" href="#">Blue</a>
-                                <a class="dropdown-item" data-value="6" href="#">Purple</a>
-                                <a class="dropdown-item" data-value="7" href="#">Pink</a>
-                                <a class="dropdown-item" data-value="8" href="#">Brown</a>
-                                <a class="dropdown-item" data-value="9" href="#">Black</a>
-                                <a class="dropdown-item" data-value="10" href="#">Grey</a>
-                                <a class="dropdown-item" data-value="11" href="#">White</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <label>Análisis de pastas</label>
+                        <div class="dropdown hierarchy-select" id="combobox">
+                            <button type="button" class="btn btn-outline-secondary btn-lg dropdown-toggle col"
+                                id="example-two-button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">Analisis de
+                                pastas</button>
+                            <div class="dropdown-menu" aria-labelledby="example-two-button">
+                                <!--BUSQUEDA DENTRO DEL COMBOBOX-->
+                                <div class="hs-searchbox">
+                                    <input type="text" class="form-control" autocomplete="off">
+                                </div>
+                                <!--DONDE SE METERAN TODOS LOS DATOS DE LOS ANALISIS QUE SE PUEDEN SELECCIONAR-->
+                                <div class="hs-menu-inner" id="comboAnalisisPastas"></div>
                             </div>
                         </div>
-                        <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true" type="text" />
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Fecha</label>
-                        <input class="form-control" id="ex3" type="date" name="fecha">
+                    <div class="col-6">
+                        <label>Fecha</label>
+                        <input class="form-control" id="Fecha" type="date" name="Fecha">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Hora</label>
-                        <input class="form-control" id="ex3" type="time" maxlength="20" minlength="0" placeholder="Hora"
-                            name="Hora">
+
+                    <div class="col-6">
+                        <label>Hora</label>
+                        <input class="form-control" id="Hora" type="time" maxlength="20" minlength="0"
+                            placeholder="Hora" name="Hora">
                     </div>
-                    <div class="col-sm-6 validate-input" data-validate="Ingresa el material">
-                        <label for="ex3">Material</label>
-                        <input class="form-control" id="ex3" type="text" maxlength="20" minlength="0"
+
+                    <div class="col-6 validate-input" data-validate="Ingresa el material">
+                        <label>Material</label>
+                        <input class="form-control" id="Material" type="text" maxlength="20" minlength="0"
                             placeholder="Material" name="Material">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Conteo Artificial</label>
-                        <input class="form-control" id="ex3" type="number" pattern="{0-9}" min="0" max="999999999999"
-                            maxlength="12" minlength="0" placeholder="Conteo Artificial" name="ConteoArti">
+                    <div class="col-6">
+                        <label>Conteo Artificial</label>
+                        <input class="form-control" id="ConteoArti" type="number" pattern="{0-9}" min="0"
+                            max="999999999999" maxlength="12" minlength="0" placeholder="Conteo Artificial"
+                            name="ConteoArti">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Colectó</label>
-                        <input class="form-control" id="ex3" type="text" maxlength="30" minlength="0"
+
+                    <div class="col-6">
+                        <label>Colectó</label>
+                        <input class="form-control" id="Colecto" type="text" maxlength="30" minlength="0"
                             placeholder="Colectó" name="Colecto">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Analizó</label>
-                        <input class="form-control" id="ex3" type="text" maxlength="40" minlength="0"
+                    <div class="col-6">
+                        <label>Analizó</label>
+                        <input class="form-control" id="Analizo" type="text" maxlength="40" minlength="0"
                             placeholder="Analizó" name="analizo">
                     </div>
-                    <div class="col-sm-6">
+
+                    <div class="col-6">
                         <label for="comment">Observaciones</label>
-                        <textarea class="form-control" rows="1" id="comment" maxlength="500" minlength="0"
+                        <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
                             placeholder="Observaciones" name="observaciones" id="Observaciones"></textarea>
                     </div>
-                </div>
-                <div class="col-sm-6" style="margin-top: 25px; margin-left: 90px;">
-                    <a href="conteo-Colecciones.php" type="submit" class="btn btn-danger">Cancelar Registro</a>
 
-                    <a href="../../operaciones/Conteo/crearConteo.php" type="submit" class="btn btn-success">Guardar
-                        Registro
-                    </a>
                 </div>
             </div>
+            <div class="col d-flex flex-row-reverse" style="margin-top:20px">
+            <a href="conteo-Colecciones.php" type="submit" class="btn btn-danger" >Cancelar
+                Registro</a>
+
+            <a href="../../operaciones/Conteo/crearConteo.php" type="submit" class="btn btn-success" style="margin-right:20px">Guardar
+                Registro
+            </a>
+        </div>
         </form>
+        
     </div>
 
     <div class="card-footer text-muted fixed-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </div>
+    
+    
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -204,13 +183,33 @@
 
     <script>
     $(document).ready(function() {
-        $('#example').hierarchySelect({
+        $('#combobox').hierarchySelect({
             hierarchy: false,
             width: 'auto'
         });
     });
     </script>
+    <script>
+    $(document).ready(function() {
 
+        load_data();
+
+        function load_data(query) {
+            $.ajax({
+                url: "comboAnalisis.php",
+                method: "POST",
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#comboAnalisisPastas').html(data);
+                }
+            });
+        }
+    });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
