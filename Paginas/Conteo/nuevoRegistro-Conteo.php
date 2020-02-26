@@ -72,7 +72,7 @@
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Agregar Conteo de Colección</h2>
     </div>
-    <div class="container" style="min-height:65vh">
+    <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
         <form class="form-horizontal validate-form" action="../../operaciones/Conteo/crearConteo.php" method="POST"
@@ -94,7 +94,7 @@
                                     
                                 </div>
                             </div>
-                            <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true"
+                            <input class="d-none" name="IdAnalisisPastas" readonly="readonly" aria-hidden="true"
                                 type="text" />
                         </div>
                         
@@ -127,24 +127,17 @@
                         <input class="form-control" id="Colecto" type="text" maxlength="30" minlength="0"
                             placeholder="Colectó" name="Colecto">
                     </div>
-                    <div class="col-6">
-                        <label>Analizó</label>
-                        <input class="form-control" id="Analizo" type="text" maxlength="40" minlength="0"
-                            placeholder="Analizó" name="analizo">
-                    </div>
 
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="observaciones" id="Observaciones" style="font-size: 10pt;"></textarea>
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;"></textarea>
                     </div>
 
                 </div>
             </div>
             <div class="col d-flex flex-row-reverse" style="margin-top:20px">
-                <a href="../../operaciones/Conteo/crearConteo.php" type="submit" class="btn btn-success">Guardar
-                    Registro
-                </a>
+                <input type="submit" class="btn btn-success" value="Guardar Registro">
                 <a href="conteo-Colecciones.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar
                     Registro</a>
             </div>

@@ -2,7 +2,6 @@
     require ('../conexion/conexion.php');
 
     $id = $_GET["idConteo"];
-    echo $id;
 
     $sql = "DELETE FROM conteocolecciones WHERE idConteo = '$id'";
 
