@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--ICONO-->
-    <link rel="icon" type="image/png" href="icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="../../icons/favicon.ico" />
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="other/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 
 <body>
@@ -42,7 +41,7 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="analisis-Pastas.php">Análsis de pastas</a>
+                    <a class="nav-link" href="../Pastas/analisis-Pastas.php">Análsis de pastas</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones <span class="sr-only">(current)</span></a>
@@ -55,10 +54,10 @@
                         Nombre del Usuario
                     </a>
                 </li>
-                <button class="btn btn-outline-light btn-lg " type="button">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a class="btn btn-outline-light btn-lg" href="../../operaciones/Sesion/cerrarSesion.php">
+                    <i class="fa fa-sign-out" onclick="cerrarSesion()" aria-hidden="true"></i>
                     Cerrar Sesion
-                </button>
+                </a>
             </form>
         </div>
     </nav>
@@ -89,9 +88,9 @@
     </div>
 
     <!--TABLA-->
-    <div class="table" id="result"></div>
+    <div class="table" id="result" style="min-height:65vh"></div>
     
-    <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 

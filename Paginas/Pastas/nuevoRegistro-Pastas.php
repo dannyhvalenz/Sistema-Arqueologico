@@ -9,16 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--ICONO-->
-    <link rel="icon" type="image/png" href="icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="../../icons/favicon.ico" />
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="other/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 
 </head>
 
@@ -47,7 +47,7 @@
                     <a class="nav-link" href="analisis-Pastas.php">Análsis de pastas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones</a>
+                    <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -57,10 +57,10 @@
                         Nombre del Usuario
                     </a>
                 </li>
-                <button class="btn btn-outline-light btn-lg " type="button">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a class="btn btn-outline-light btn-lg" href="../../operaciones/Sesion/cerrarSesion.php">
+                    <i class="fa fa-sign-out" onclick="cerrarSesion()" aria-hidden="true"></i>
                     Cerrar Sesion
-                </button>
+                </a>
             </form>
         </div>
     </nav>
@@ -68,7 +68,7 @@
     <div class="container-fluid text-center">
         <h2>Agregar Registro de Análisis de Pastas</h2>
     </div>
-    <div class="container">
+    <div class="container" style="min-height:65vh">
 
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
@@ -152,7 +152,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="comment">Observaciones</label>
-                        <textarea class="form-control" rows="1" id="comment" maxlength="250" minlength="0"
+                        <textarea class="form-control" rows="1" id="comment" maxlength="500" minlength="0"
                             placeholder="Observaciones" name="Observaciones" id="Observaciones"></textarea>
                     </div>
                 </div>
@@ -181,9 +181,12 @@
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </div>
 
-    <script src="js/main.js"></script>
+    <!--SCRIPTS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+
+    <!--SCRIPT PARA LAS IMAGENES-->
     <script>
     $(function() {
         $("#file").on("change", function() {
@@ -212,6 +215,18 @@
         });
     });
     </script>
+
+    <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $('textarea').each(function() {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    </script>
+    
 </body>
 
 </html>

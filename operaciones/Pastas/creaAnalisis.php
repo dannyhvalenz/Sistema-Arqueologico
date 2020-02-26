@@ -21,7 +21,13 @@
 
     echo $Fecha;
 
-    $sql = "INSERT INTO analisispastas (NumAnalisisPasta, Fecha, Cuadrante, Sitio, Patron, Utme, Utmn, Latitud, Analizo, Bolsa, Tipo, Tratamiento, Modificacion, FormasTratamientos, Peso, TotalFragmentos, Observaciones) VALUES ('$NumAnalisisPasta', '$Fecha', '$Cuadrante', '$Sitio', '$Patron', '$Utme', '$Utmn', '$Latitud', '$Analizo', '$Bolsa', '$Tipo','$Tratamiento','$Modificacion','$FormasTratamientos','$Peso','$TotalFragmentos', '$Observaciones')"
+    $sql = "INSERT INTO analisispastas (NumAnalisisPasta, Fecha, Cuadrante, Sitio, Patron, 
+                Utme, Utmn, Latitud, Analizo, Bolsa, Tipo, Tratamiento, Modificacion, FormasTratamientos, 
+                Peso, TotalFragmentos, Observaciones) VALUES ('$NumAnalisisPasta', '$Fecha', '$Cuadrante', 
+                '$Sitio', '$Patron', '$Utme', '$Utmn', '$Latitud', '$Analizo', '$Bolsa', '$Tipo',
+                '$Tratamiento','$Modificacion','$FormasTratamientos','$Peso','$TotalFragmentos', 
+                '$Observaciones')";
+                
     $resultado=mysqli_query($conexion, $sql);
 
     if($resultado==true){    
