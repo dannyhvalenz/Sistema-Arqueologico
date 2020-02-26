@@ -12,20 +12,19 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/hierarchy-select.min.css">
 
-<style>
+    <style>
     .col-6 {
-        padding-top:10px;
+        padding-top: 10px;
     }
-    label{
-        font-size:12px;
-    }
-</style>
+ 
+    </style>
 </head>
 
 <body>
@@ -70,7 +69,6 @@
             </form>
         </div>
     </nav>
-
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Agregar Conteo de Colección</h2>
     </div>
@@ -79,24 +77,27 @@
         <p>Debe de ingresar los datos correctamente:</p>
         <form class="form-horizontal validate-form" action="../../operaciones/Conteo/crearConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
+
             <div class="container">
                 <div class="row">
                     <div class="col-6">
                         <label>Análisis de pastas</label>
-                        <div class="dropdown hierarchy-select" id="combobox">
-                            <button type="button" class="btn btn-outline-secondary btn-lg dropdown-toggle col"
-                                id="example-two-button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">Analisis de
+                        <div class="dropdown hierarchy-select" id="combo">
+                            <button type="button" class="btn btn-outline-success btn-md dropdown-toggle col" id="example-two-button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Selecciona el análisis de
                                 pastas</button>
-                            <div class="dropdown-menu" aria-labelledby="example-two-button">
-                                <!--BUSQUEDA DENTRO DEL COMBOBOX-->
+                            <div class="dropdown-menu col" aria-labelledby="example-two-button">
                                 <div class="hs-searchbox">
                                     <input type="text" class="form-control" autocomplete="off">
                                 </div>
-                                <!--DONDE SE METERAN TODOS LOS DATOS DE LOS ANALISIS QUE SE PUEDEN SELECCIONAR-->
-                                <div class="hs-menu-inner" id="comboAnalisisPastas"></div>
+                                <div class="hs-menu-inner" id="comboAnalisisPastas">
+                                    
+                                </div>
                             </div>
+                            <input class="d-none" name="example_two" readonly="readonly" aria-hidden="true"
+                                type="text" />
                         </div>
+                        
                     </div>
                     <div class="col-6">
                         <label>Fecha</label>
@@ -135,30 +136,38 @@
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="observaciones" id="Observaciones"></textarea>
+                            placeholder="Observaciones" name="observaciones" id="Observaciones" style="font-size: 10pt;"></textarea>
                     </div>
 
                 </div>
             </div>
             <div class="col d-flex flex-row-reverse" style="margin-top:20px">
-            <a href="conteo-Colecciones.php" type="submit" class="btn btn-danger" >Cancelar
-                Registro</a>
-
-            <a href="../../operaciones/Conteo/crearConteo.php" type="submit" class="btn btn-success" style="margin-right:20px">Guardar
-                Registro
-            </a>
-        </div>
+                <a href="../../operaciones/Conteo/crearConteo.php" type="submit" class="btn btn-success">Guardar
+                    Registro
+                </a>
+                <a href="conteo-Colecciones.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar
+                    Registro</a>
+            </div>
         </form>
-        
+
     </div>
 
-    <div class="card-footer text-muted fixed-bottom" style="margin-top:20px">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
-    </div>
-    
-    
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <!-- jQuery -->
+    <script src="../../other/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../other/jquery/jquery-3.4.1.min.js"></script>
+    <!-- Popper Js -->
+    <script src="../../other/popper/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
+    <!-- Hierarchy Select Js -->
+    <script src="../../js/hierarchy-select.min.js"></script>
+
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     $('textarea').each(function() {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
@@ -167,28 +176,16 @@
         this.style.height = (this.scrollHeight) + 'px';
     });
     </script>
-    <script src="../../js/main.js"></script>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Popper Js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
-    <!-- Hierarchy Select Js -->
-    <script src="../../js/hierarchy-select.min.js"></script>
 
     <script>
     $(document).ready(function() {
-        $('#combobox').hierarchySelect({
+        $('#combo').hierarchySelect({
             hierarchy: false,
             width: 'auto'
         });
     });
     </script>
+
     <script>
     $(document).ready(function() {
 
@@ -208,8 +205,6 @@
         }
     });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
