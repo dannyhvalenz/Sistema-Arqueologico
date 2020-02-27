@@ -8,6 +8,7 @@ if(isset($_POST["query"]))
  $query = "
   SELECT * FROM conteocolecciones 
   WHERE IdConteo LIKE '%".$search."%'
+  OR Material LIKE '%".$search."%'
  ";
 }
 else
