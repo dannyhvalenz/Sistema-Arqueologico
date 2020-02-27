@@ -23,7 +23,7 @@ Arqueólogo
 - [x] Eliminar registro de pastas
 - [x] Buscar registro de pastas
 - [x] Agregar conteo de colecciones
-- [ ] Editar conteo de colecciones
+- [x] Editar conteo de colecciones
 - [x] Eliminar conteo de colecciones
 - [x] Buscar conteo de colecciones
 
