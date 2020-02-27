@@ -48,7 +48,7 @@ if(mysqli_num_rows($result) > 0)
     <td>'.$row["Hora"].'</td>
     <td>'.$row["IdAnalisisPastas"].'</td>
     <td>'.$row["ObservaConteo"].'</td>
-    <td><a href="../../operaciones/Conteo/editarConteo.php?idConteo='.$row["idConteo"].'"
+    <td><a href="actualizar-conteo.php?idConteo='.$row["idConteo"].'"
         class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
     </td>
     <td><a href="../../operaciones/Conteo/eliminarConteo.php?idConteo='.$row["idConteo"].'"

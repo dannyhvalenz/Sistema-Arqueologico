@@ -25,7 +25,7 @@ if(mysqli_num_rows($result) > 0)
  while($row = mysqli_fetch_array($result))
  {
   $output .= '
-  <a class="dropdown-item" data-value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"]." .- ".$row["Fecha"].'</a>';
+  <a class="dropdown-item" data-value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</a>';
  }
  echo $output;
 }
