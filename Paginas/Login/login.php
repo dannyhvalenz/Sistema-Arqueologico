@@ -39,7 +39,7 @@
 					if ($row['cargo'] == 'Adminstrador'){
 						header("Location: ../../Paginas/inicioAdministrador.php");
 					} else if ($row['cargo'] == 'Arqueologo'){
-						header("Location: ../../Paginas/Pastas/analisis-Pastas.php?id=$iddom");
+						header("Location: ../../Paginas/Pastas/analisis-Pastas.php");
 					}
 				}
 			} 
