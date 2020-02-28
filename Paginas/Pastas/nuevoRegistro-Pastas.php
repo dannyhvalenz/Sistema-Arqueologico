@@ -25,13 +25,13 @@
 <body>
     <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
     <?php
-        /*
+        
         session_start();
 
         if(isset($_SESSION['usuario'])){                   
         }else{
-            header("Location:login.php");
-        }*/
+            //header("Location:../../Paginas/Login/login.php");
+        }
     ?>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -54,7 +54,23 @@
                 <li class="nav-item">
                     <a class="nav-link text-light">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Nombre del Usuario
+                        <?php 
+                        
+                            require ('../../operaciones/conexion/conexion.php'); 
+                            $user = $_SESSION['usuario'];
+                            $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
+
+                            $result = mysqli_query($conexion, $sql);
+
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+                                    echo $row['nombre'] . " " .$row['apellido'];
+                                }
+                            } else {
+                                echo "Nombre del Usuario";
+                            }
+                                            
+                        ?>
                     </a>
                 </li>
                 <a class="btn btn-outline-light btn-lg" href="../../operaciones/Sesion/cerrarSesion.php">

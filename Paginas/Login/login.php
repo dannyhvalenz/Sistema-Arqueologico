@@ -21,7 +21,30 @@
 
 </head>
 <body>
-	
+	<!--VERIFICA QUE ESTE LA SESION ACTIVA-->
+    <?php
+        
+        session_start();
+
+        if(isset($_SESSION['usuario'])){                   
+			require ('../../operaciones/conexion/conexion.php'); 
+			$user = $_SESSION['usuario'];
+
+			$sql = "SELECT cargo FROM usuarios WHERE usuario='$user'";
+
+			$result = mysqli_query($conexion, $sql);
+
+			if(mysqli_num_rows($result) > 0){
+				while($row = mysqli_fetch_array($result)){
+					if ($row['cargo'] == 'Adminstrador'){
+						header("Location: ../../Paginas/inicioAdministrador.php");
+					} else if ($row['cargo'] == 'Arqueologo'){
+						header("Location: ../../Paginas/Pastas/analisis-Pastas.php?id=$iddom");
+					}
+				}
+			} 
+		}
+    ?>
 	<div class="limiter ">
 		<div class="container-login100 ">
 			<div class="contenedor-login shadow p-3 mb-5 bg-white rounded">
@@ -29,7 +52,7 @@
 					<img src="../../img/logo.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="../../operaciones/Sesion/validar.php" method="POST" >
+				<form class="login100-form validate-form" action="../../operaciones/Sesion/iniciarSesion.php" method="GET" >
 					<span class="login100-form-title">
 						Iniciar Sesión
 					</span>
@@ -51,14 +74,16 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button type="submit" id="" class="login100-form-btn">
 							Ingresar
 						</button>
 					</div>
 				</form>
 			</div>
 		</div>
+		
 	</div>
+</div>
 	
 <!--SCRIPTS-->	
 	<script src="../../other/jquery/jquery-3.2.1.min.js"></script>
@@ -67,5 +92,6 @@
 	<script src="../../other/select2/select2.min.js"></script>
 	<script src="../../other/tilt/tilt.jquery.min.js"></script>
 	<script src="../../js/main.js"></script>
+</script>
 </body>
 </html>
