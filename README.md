@@ -16,8 +16,8 @@ Jefe de Proyecto
 
 Arqueólogo
 
-- [ ] Iniciar Sesión
-- [ ] Cerrar Sesión
+- [x] Iniciar Sesión
+- [x] Cerrar Sesión
 - [ ] Agregar registro de pastas (debe incluir imágenes)
 - [ ] Editar registro de pastas
 - [x] Eliminar registro de pastas
