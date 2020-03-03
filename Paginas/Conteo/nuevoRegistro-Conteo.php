@@ -41,7 +41,7 @@
 
         if(isset($_SESSION['usuario'])){                   
         }else{
-            //header("Location:../../Paginas/Login/login.php");
+            header("Location:../../Paginas/Login/login.php");
         }
     ?>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">

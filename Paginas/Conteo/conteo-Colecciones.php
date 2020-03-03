@@ -21,13 +21,12 @@
 <body>
     <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
     <?php
-        
-        session_start();
+         session_start();
 
-        if(isset($_SESSION['usuario'])){                   
-        }else{
-           // header("Location:../../Paginas/Login/login.php");
-        }
+         if(isset($_SESSION['usuario'])){                   
+         }else{
+             header("Location:../../Paginas/Login/login.php");
+         }
     ?>
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
