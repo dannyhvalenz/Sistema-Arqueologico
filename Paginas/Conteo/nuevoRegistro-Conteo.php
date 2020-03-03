@@ -11,6 +11,12 @@
     <link rel="icon" type="image/png" href="../../icons/favicon.ico" />
 
     <!--STYLESHEET-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.css" rel="stylesheet"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
@@ -91,63 +97,52 @@
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form" action="../../operaciones/Conteo/crearConteo.php" method="POST"
+        <form class="form-horizontal validate-form needs-validation" novalidate action="../../operaciones/Conteo/crearConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
 
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <label>Análisis de pastas</label>
-                        <div class="dropdown hierarchy-select" id="combo">
-                            <button type="button" class="btn btn-outline-success btn-md dropdown-toggle col" id="example-two-button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Selecciona el análisis de
-                                pastas</button>
-                            <div class="dropdown-menu col" aria-labelledby="example-two-button">
-                                <div class="hs-searchbox">
-                                    <input type="text" class="form-control" autocomplete="off">
-                                </div>
-                                <div class="hs-menu-inner" id="comboAnalisisPastas">
-                                    
-                                </div>
-                            </div>
-                            <input class="d-none" name="IdAnalisisPastas" readonly="readonly" aria-hidden="true"
-                                type="text" />
+                        <div class="form-group col">
+                            <label>Análisis de pastas</label>
+                            <select class="selectpicker form-control form-control-lg" id="comboAnalisisPastas" data-live-search="true" required>
+                                
+                            </select>
                         </div>
-                        
                     </div>
                     <div class="col-6">
                         <label>Fecha</label>
-                        <input class="form-control" id="Fecha" type="date" name="Fecha">
+                        <input class="form-control" id="Fecha" type="date" name="Fecha" required>
                     </div>
 
                     <div class="col-6">
                         <label>Hora</label>
                         <input class="form-control" id="Hora" type="time" maxlength="20" minlength="0"
-                            placeholder="Hora" name="Hora">
+                            placeholder="Hora" name="Hora" required>
                     </div>
 
                     <div class="col-6 validate-input" data-validate="Ingresa el material">
                         <label>Material</label>
                         <input class="form-control" id="Material" type="text" maxlength="20" minlength="0"
-                            placeholder="Material" name="Material">
+                            placeholder="Material" name="Material" required>
                     </div>
                     <div class="col-6">
                         <label>Conteo Artificial</label>
                         <input class="form-control" id="ConteoArti" type="number" pattern="{0-9}" min="0"
                             max="999999999999" maxlength="12" minlength="0" placeholder="Conteo Artificial"
-                            name="ConteoArti">
+                            name="ConteoArti" required >
                     </div>
 
                     <div class="col-6">
                         <label>Colectó</label>
-                        <input class="form-control" id="Colecto" type="text" maxlength="30" minlength="0"
-                            placeholder="Colectó" name="Colecto">
+                        <input class="form-control highlight" id="Colecto" type="text" maxlength="30" minlength="0"
+                            placeholder="Colectó" name="Colecto" required>
                     </div>
 
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;"></textarea>
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required></textarea>
                     </div>
 
                 </div>
@@ -175,7 +170,14 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
+    <script src="../../js/validarcampos.js"></script>
+    
 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
     $('textarea').each(function() {
