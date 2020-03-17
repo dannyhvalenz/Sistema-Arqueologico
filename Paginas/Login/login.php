@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Iniciar Sesion</title>
 	<meta charset="UTF-8">
@@ -30,15 +30,15 @@
 			require ('../../operaciones/conexion/conexion.php'); 
 			$user = $_SESSION['usuario'];
 
-			$sql = "SELECT cargo FROM usuarios WHERE usuario='$user'";
+			$sql = "SELECT Cargo FROM usuarios WHERE Nombre='$user'";
 
 			$result = mysqli_query($conexion, $sql);
 
 			if(mysqli_num_rows($result) > 0){
 				while($row = mysqli_fetch_array($result)){
-					if ($row['cargo'] == 'Adminstrador'){
-						header("Location: ../../Paginas/inicioAdministrador.php");
-					} else if ($row['cargo'] == 'Arqueologo'){
+					if ($row['Cargo'] == 'Administrador'){
+						header("Location: ../../Paginas/Admin/inicioAdministrador.php");
+					} else if ($row['Cargo'] == 'Arqueologo'){
 						header("Location: ../../Paginas/Pastas/analisis-Pastas.php");
 					}
 				}
@@ -82,9 +82,8 @@
 			</div>
 		</div>
 		
-	</div>
 </div>
-	
+
 <!--SCRIPTS-->	
 	<script src="../../other/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../../other/bootstrap/js/popper.js"></script>
@@ -92,6 +91,5 @@
 	<script src="../../other/select2/select2.min.js"></script>
 	<script src="../../other/tilt/tilt.jquery.min.js"></script>
 	<script src="../../js/main.js"></script>
-</script>
 </body>
 </html>

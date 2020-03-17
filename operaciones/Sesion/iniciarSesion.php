@@ -21,7 +21,7 @@
                 echo "<script>console.log('Sesion de: " . $iddom . "' );</script>";
                 if ($row['cargo'] == 'Administrador'){
                     $_SESSION['usuario'] = $usuario;
-                    header("Location: inicioAdministrador.php");
+                    header("Location: ../../Paginas/inicioAdministrador.php");
                 } else if ($row['cargo'] == 'Arqueologo'){
                     $_SESSION['usuario'] = $usuario;
                     header("Location: ../../Paginas/Pastas/analisis-Pastas.php");
