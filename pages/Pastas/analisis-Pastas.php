@@ -15,22 +15,30 @@
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../..//css/main.css">
-
+    <style>
+        @media screen and (max-width: 320px) {
+             table {
+               display: block;
+               overflow-x: auto;
+             }
+        }
+    </style>
 </head>
 
 <body>
     <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
     <?php
-         session_start();
+        
+        session_start();
 
          if(isset($_SESSION['usuario'])){                   
          }else{
              header("Location:../../pages/Login/login.php");
          }
-    ?>
+?>
 
     <!--BARRA DE NAVEGACION-->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,13 +66,13 @@
                             
                             echo "<script>console.log('Sesion de: " . $user . "' );</script>";
 
-                            $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
+                            $sql = "SELECT * FROM usuarios WHERE Nombre='$user'";
 
                             $result = mysqli_query($conexion, $sql);
 
                             if(mysqli_num_rows($result) > 0){
                                 while($row = mysqli_fetch_array($result)){
-                                    echo $row['nombre'] . " " .$row['apellido'];
+                                    echo $row['Nombre'] . " " .$row['Apellido'];
                                 }
                             } else {
                                 echo "Nombre del Usuario";

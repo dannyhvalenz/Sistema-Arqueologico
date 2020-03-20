@@ -1,6 +1,6 @@
 <?php
     // Crear conexion
-    $conexion = new mysqli("localhost", "root", "12345", "abdarqueologia");
+    $conexion = new mysqli("localhost", "root", "", "abdarqueologia");
 
     // Checar conexion
     if ($conexion->connect_error) {

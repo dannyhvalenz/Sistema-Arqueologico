@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Iniciar Sesion</title>
 	<meta charset="UTF-8">
@@ -30,7 +30,7 @@
 			require ('../../functions/conexion/conexion.php'); 
 			$user = $_SESSION['usuario'];
 
-			$sql = "SELECT cargo FROM usuarios WHERE usuario='$user'";
+			$sql = "SELECT Cargo FROM usuarios WHERE Nombre='$user'";
 
 			$result = mysqli_query($conexion, $sql);
 
@@ -41,9 +41,8 @@
 					} else if ($row['cargo'] == 'Arqueologo'){
 						header("Location: ../../pages/Pastas/analisis-Pastas.php");
 					}
-				}
-			} 
-		}
+				} 
+			}
     ?>
 	<div class="limiter ">
 		<div class="container-login100 ">
@@ -82,9 +81,8 @@
 			</div>
 		</div>
 		
-	</div>
 </div>
-	
+
 <!--SCRIPTS-->	
 	<script src="../../other/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../../other/bootstrap/js/popper.js"></script>
@@ -92,6 +90,5 @@
 	<script src="../../other/select2/select2.min.js"></script>
 	<script src="../../other/tilt/tilt.jquery.min.js"></script>
 	<script src="../../js/main.js"></script>
-</script>
 </body>
 </html>
