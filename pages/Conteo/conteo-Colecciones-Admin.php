@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Análisis de Pastas</title>
+    <title>Conteo de Colecciones</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,11 +11,11 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../..//css/main.css">
 
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 
 <body>
@@ -28,7 +28,6 @@
              header("Location:../../pages/Login/login.php");
          }
     ?>
-
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -37,14 +36,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="../Usuario/inicioAdministrador.php">Usuarios</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Análisis de Pastas</a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>
+                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análsis de pastas</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Conteo de colecciones</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -55,9 +54,6 @@
                         
                             require ('../../functions/conexion/conexion.php'); 
                             $user = $_SESSION['usuario'];
-                            
-                            echo "<script>console.log('Sesion de: " . $user . "' );</script>";
-
                             $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
@@ -83,17 +79,23 @@
 
     <!--TITULO-->
     <div class="container-fluid text-center">
-        <h1><b>Análisis de Pastas</b></h1>
+        <h1><b>Conteo de Colecciones</b></h1>
     </div>
 
     <!--DIV ACCIONES-->
     <div class="" style="margin:15px;margin-left:30px">
         <div class="row">
+
+            <!--BOTON AGREGAR REGISTRO-->
+            <a href="nuevoRegistro-Conteo.php" class="btn btn-success btn-lg">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                Nuevo Registro
+            </a>
             <!--BUSCAR REGISTRO-->
             <form class="form-inline" style="margin-left:30px">
-            <input type="text" name="search_text" id="search_text" placeholder="Buscar análisis" class="form-control" style="width:300px; margin-right:10px"/> 
+            <input type="text" name="search_text" id="search_text" placeholder="Buscar conteo" class="form-control" style="width:300px; margin-right:10px"/> 
             
-            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por Tipo o ID" style="border-radius:50px;">
+            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por ID" style="border-radius:50px;">
             <i class="fa fa-question" aria-hidden="true"></i>
             </button>  
             </form>
@@ -103,14 +105,13 @@
     <!--TABLA-->
     <div class="table" id="result" style="min-height:65vh"></div>
     
-    <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 
     <!--SCRIPTS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
     <script>
     $(document).ready(function() {
 
@@ -118,7 +119,7 @@
 
         function load_data(query) {
             $.ajax({
-                url: "buscar-analisis-admin.php",
+                url: "buscar-conteo-admin.php",
                 method: "POST",
                 data: {
                     query: query
@@ -132,7 +133,9 @@
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } 
+            } else {
+                load_data();
+            }
         });
     });
     </script>

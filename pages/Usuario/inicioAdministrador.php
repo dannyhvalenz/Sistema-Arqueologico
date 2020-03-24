@@ -38,10 +38,10 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                    <a class="nav-link" href="#">Usuarios</a>
+                    <a class="nav-link active" href="#">Usuarios</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="../Pastas/buscar-analisis-admin.php">Analisis de Pastas</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Analisis de Pastas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>
