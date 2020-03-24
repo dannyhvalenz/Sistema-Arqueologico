@@ -41,7 +41,7 @@
                     <a class="nav-link active" href="#">Usuarios</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Analisis de Pastas</a>
+                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análisis de Pastas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>

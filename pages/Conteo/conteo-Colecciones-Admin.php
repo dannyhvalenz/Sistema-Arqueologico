@@ -85,12 +85,6 @@
     <!--DIV ACCIONES-->
     <div class="" style="margin:15px;margin-left:30px">
         <div class="row">
-
-            <!--BOTON AGREGAR REGISTRO-->
-            <a href="nuevoRegistro-Conteo.php" class="btn btn-success btn-lg">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                Nuevo Registro
-            </a>
             <!--BUSCAR REGISTRO-->
             <form class="form-inline" style="margin-left:30px">
             <input type="text" name="search_text" id="search_text" placeholder="Buscar conteo" class="form-control" style="width:300px; margin-right:10px"/> 
