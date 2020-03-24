@@ -5,14 +5,14 @@
    $sql = "SELECT * FROM usuarios WHERE idUsuario='$idUsuario'";
    
    $resultado = mysqli_query($conexion, $sql);
-   $row = mysqli_fetch_array($resultado) ; 
+   $row = mysqli_fetch_array($resultado)  
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Nuevo registro</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,13 +21,32 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../..//css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/hierarchy-select.min.css">
+
+    <style>
+    .col-6 {
+        padding-top: 10px;
+    }
+ 
+    </style>
 </head>
 
 <body>
+    <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
+    <?php
+        
+        session_start();
+
+        if(isset($_SESSION['usuario'])){                   
+        }else{
+            //header("Location:../../pages/Login/login.php");
+        }
+    ?>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,62 +62,133 @@
                 <li class="nav-item">
                     <a class="nav-link text-light">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Nombre del Usuario
+                        <?php 
+                        
+                            require ('../../functions/conexion/conexion.php'); 
+                            $user = $_SESSION['usuario'];
+                            $sql = "SELECT * FROM usuarios WHERE Nombre='$user'";
+
+                            $result = mysqli_query($conexion, $sql);
+
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+                                    echo $row['Nombre'] . " " .$row['Apellido'];
+                                }
+                            } else {
+                                echo "Nombre del Usuario";
+                            }
+                                            
+                        ?>
                     </a>
                 </li>
-                <button class="btn btn-outline-light btn-lg " type="button">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a class="btn btn-outline-light btn-lg" href="../../functions/Sesion/cerrarSesion.php">
+                    <i class="fa fa-sign-out" onclick="cerrarSesion()" aria-hidden="true"></i>
                     Cerrar Sesion
-                </button>
+                </a>
             </form>
         </div>
     </nav>
-
-    <div class="container-fluid text-center">
-        <h2>Agregar Usuario</h2>
+    <div class="container-fluid text-center" style="margin-bottom:20px">
+        <h2>Editar Usuario</h2>
     </div>
-    <div class="container">
-
+    <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form" method="POST" action="../functions/Usuarios/editarUsuario.php"  method="POST">
-            <div class="">
-                <div class="col-sm-12">
-                    <div class="col-sm-6">
-                        <label for="ex3">Nombre</label>
-                        <input class="form-control" type="text" maxlength="30" minlength="0"
-                            placeholder="Nombre" name="nombre" id="nombre" value="<?php echo $row['Nombre']?>">
+        <form class="form-horizontal validate-form" action="../../functions/Admin/actualizarUsuario.php" method="POST"
+            enctype="multipart/form-data" autocomplete="off">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <label>Nombre</label>
+                        <input class="form-control" id="nombre" type="text" maxlength="30" minlength="0" placeholder="Nombre" name="nombre"
+                         value="<?php echo $row['nombre']?>">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Apellidos</label>
-                        <input class="form-control" type="text" maxlength="30" minlength="0"
-                            placeholder="Apellidos" name="apellido" id="apellido" value="<?php echo $row['Apellido']?>">
+                    <div class="col-6">
+                        <label>Apellido(s)</label>
+                        <input class="form-control" id="apellido" type="text" maxlength="30" minlength="0" placeholder="Apellido(s)"
+                            name="apellido" value="<?php echo $row['apellido']?>">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Contraseña</label>
-                        <input class="form-control" type="text" maxlength="30" minlength="0" placeholder="Contraseña"
-                            name="contrasena" id="contrasena" value="<?php echo $row['Contrasena']?>"> 
+                    <div class="col-6">
+                        <label>Nombre de usuario</label>
+                        <input class="form-control" id="usuario" type="text" maxlength="30" minlength="0" placeholder="Usuario"
+                            name="usuario" value="<?php echo $row['usuario']?>">
                     </div>
-                    <div class="col-sm-6">
-                        <label for="ex3">Cargo</label>
-                        <input class="form-control" type="text" maxlength="20" minlength="0"
-                            placeholder="Cargo" name="cargo" id="cargo" value="<?php echo $row['Cargo']?>">
+                    <div class="col-6">
+                        <label>Cargo</label>
+                        <select class="form-control"  id="comment" maxlength="30" minlength="0"
+                            placeholder="Cargo" name="cargo" id="cargo">
+                            <option value="Administrador" <?php if ($row['cargo'] == 'Administrador') { echo ' selected="selected"'; } ?>>Administrador</option>
+                            <option value="Arqueologo" <?php if ($row['cargo'] == 'Arqueologo') { echo ' selected="selected"'; } ?>>Arqueologo</option>
+                        </select>    
+                    </div>
+                    <div class="col-6">
+                        <label>Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" name="contrasena" id="contrasena" class="form-control" data-toggle="password" placeholder="Contraseña"
+                            value="<?php echo $row['contrasena']?>">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-eye"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <input name="idUsuario"  value="<?php echo $row['idUsuario']?>" hidden>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" style="margin-top: 25px; margin-left: 90px;">
-                <a href="usuarios.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar</a>
-                <button type="submit" class="btn btn-success" value="Actualizar">Guardar</button>
+            <div class="col d-flex flex-row-reverse" style="margin-top:20px">
+                <input type="submit" class="btn btn-success" value="Actualizar Usuario">
+                <a href="inicioAdministrador.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar</a>
             </div>
         </form>
-    </div>
-    <div class="card-footer text-muted" style="margin-top:20px">
-        Este es un proyecto para el gestionamiento de datos arqueológicos
+
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
+        Este es un proyecto para el gestionamiento de datos arqueológicos
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <!-- jQuery -->
+    <script src="../../other/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../other/jquery/jquery-3.4.1.min.js"></script>
+    <!-- Popper Js -->
+    <script src="../../other/popper/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
+    <!-- Hierarchy Select Js -->
+    <script src="../../js/hierarchy-select.min.js"></script>
+    
+    
+    <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+    
+    /**
+    * @author Abdo-Hamoud <abdo.host@gmail.com>
+    * https://github.com/Abdo-Hamoud/bootstrap-show-password
+    * version: 1.0
+    */
+
+    !function(a){a(function(){a('[data-toggle="password"]').each(function(){var b = a(this); var c = a(this).parent().find(".input-group-text"); c.css("cursor", "pointer").addClass("input-password-hide"); c.on("click", function(){if (c.hasClass("input-password-hide")){c.removeClass("input-password-hide").addClass("input-password-show"); c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); b.attr("type", "text")} else{c.removeClass("input-password-show").addClass("input-password-hide"); c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); b.attr("type", "password")}})})})}(window.jQuery);
+
+
+    }
+
+    //]]>
+    </script>
+
+
+    <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
+    <script>
+        $('textarea').each(function() {
+            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        }).on('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>    
 </body>
 
 </html>

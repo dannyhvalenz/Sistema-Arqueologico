@@ -37,14 +37,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+            <li class="nav-item">
+                    <a class="nav-link" href="../Usuario/inicioAdministrador.php">Usuarios</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="analisis-Pastas.php">Análsis de pastas <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Analisis de Pastas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones</a>
+                    <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

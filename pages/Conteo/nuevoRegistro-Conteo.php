@@ -97,7 +97,7 @@
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/crearConteo.php" method="GET"
+        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/crearConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
 
             <div class="container">

@@ -21,7 +21,7 @@
                 echo "<script>console.log('Sesion de: " . $iddom . "' );</script>";
                 if ($row['cargo'] == 'Administrador'){
                     $_SESSION['usuario'] = $usuario;
-                    header("Location: ../../Paginas/inicioAdministrador.php");
+                    header("Location: ../../pages/Usuario/inicioAdministrador.php");
                 } else if ($row['cargo'] == 'Arqueologo'){
                     $_SESSION['usuario'] = $usuario;
                     header("Location: ../../pages/Pastas/analisis-Pastas.php");
@@ -31,19 +31,9 @@
             //$respuesta = "Invalido"
             //return $respuesta;
         }  
-
-        /*
-        $query = mysqli_query($conexion, "SELECT * FROM admins WHERE Nombreadmin = '$usuario' AND contrasena = '$contrasena'");
-        $rows = mysqli_num_rows($query);
-        if($rows == 1){
-            header("Location: inicioAdmin.php");
-        }else{
-            echo "Datos incorrectos";
-        }  */
     }
 
 /*
-
        $usuario = mysqli_real_escape_string($mysqli,$_POST['usuario']);
        $contrasena = mysqli_real_escape_string($mysqli,$_POST['contrasena']);
        $error = '';

@@ -35,7 +35,7 @@
          }else{
              header("Location:../../pages/Login/login.php");
          }
-?>
+    ?>
 
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" style="background: #36622C">
