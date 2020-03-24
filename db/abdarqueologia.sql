@@ -1,174 +1,134 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : PHPMYADMIN
+ Source Server Type    : MySQL
+ Source Server Version : 50726
+ Source Host           : localhost:3306
+ Source Schema         : abdarqueologia
+
+ Target Server Type    : MySQL
+ Target Server Version : 50726
+ File Encoding         : 65001
+
+ Date: 23/03/2020 21:03:21
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for analisispastas
+-- ----------------------------
+DROP TABLE IF EXISTS `analisispastas`;
 CREATE TABLE `analisispastas` (
-  `IdAnalisisPastas` int(4) NOT NULL,
+  `IdAnalisisPastas` int(4) NOT NULL AUTO_INCREMENT,
   `NumAnalisisPasta` varchar(10) NOT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Cuadrante` varchar(20) DEFAULT NULL,
-  `Sitio` varchar(20) DEFAULT NULL,
-  `Patron` varchar(30) DEFAULT NULL,
-  `Utme` int(12) DEFAULT NULL,
-  `Utmn` int(12) DEFAULT NULL,
-  `Latitud` int(5) DEFAULT NULL,
-  `Analizo` varchar(40) DEFAULT NULL,
-  `Bolsa` varchar(10) DEFAULT NULL,
-  `Tipo` varchar(10) DEFAULT NULL,
-  `Tratamiento` varchar(100) DEFAULT NULL,
-  `Modificacion` varchar(100) DEFAULT NULL,
-  `FormasTratamientos` varchar(100) DEFAULT NULL,
-  `Peso` double DEFAULT NULL,
-  `TotalFragmentos` int(4) DEFAULT NULL,
-  `Observaciones` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Fecha` date NOT NULL,
+  `Cuadrante` varchar(20) NOT NULL,
+  `Sitio` varchar(20) NOT NULL,
+  `Patron` varchar(30) NOT NULL,
+  `Utme` int(12) NOT NULL,
+  `Utmn` int(12) NOT NULL,
+  `Latitud` int(5) NOT NULL,
+  `Analizo` varchar(40) NOT NULL,
+  `Bolsa` varchar(10) NOT NULL,
+  `Tipo` varchar(10) NOT NULL,
+  `Tratamiento` varchar(100) NOT NULL,
+  `Modificacion` varchar(100) NOT NULL,
+  `FormasTratamientos` varchar(100) NOT NULL,
+  `Peso` double NOT NULL,
+  `TotalFragmentos` int(4) NOT NULL,
+  `Observaciones` varchar(250) DEFAULT NULL,
+  `Estado` varchar(255) NOT NULL,
+  PRIMARY KEY (`IdAnalisisPastas`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `analisispastas`
---
-
-INSERT INTO `analisispastas` (`IdAnalisisPastas`, `NumAnalisisPasta`, `Fecha`, `Cuadrante`, `Sitio`, `Patron`, `Utme`, `Utmn`, `Latitud`, `Analizo`, `Bolsa`, `Tipo`, `Tratamiento`, `Modificacion`, `FormasTratamientos`, `Peso`, `TotalFragmentos`, `Observaciones`) VALUES
-(1, '', '2019-10-02', 'ASXD', 'SDCV', 'SDC', 455, 1458, 565, 'SD', 'AS', 'AS', 'AS', 'ASD', 'AS', 2, 4, 'Café, un par de empanadas y la nueva temporada de American Horror Story. A veces ella me pregunta por qué me gustan las series y películas de terror. La respuesta es siempre la misma: no importa mucho el género, importa la historia y la forma de cont'),
-(2, '', '2019-10-27', 'ASXDJ', 'AS', 'ZZ', 785, 147, 874, 'ZX', 'AS', 'AS', 'AS', 'ASD', 'AS', 0.58, 4, 'ASD'),
-(3, '', '2019-10-27', 'ASXDJ', 'AS', 'ZZ', 785, 147, 874, 'ZX', 'AS', 'AS', 'AS', 'ASD', 'AS', 0.58, 4, 'ASD'),
-(4, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls'),
-(5, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls'),
-(6, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls'),
-(7, '', '2019-10-03', 'gtre', 'sdf', 'dsa', 874, 54, 215, 'qwer', 'erty', 'hbvcxz', 'sdf', 'mnb', 'jhvcx', 4, 78, 'aZSDXCFGVBHNJKM'),
-(8, '', '2019-10-03', 'gtre', 'sdf', 'dsa', 874, 54, 215, 'qwer', 'erty', 'hbvcxz', 'sdf', 'mnb', 'jhvcx', 4, 78, 'aZSDXCFGVBHNJKM'),
-(9, '', '2019-10-30', 'ytre', 'qwer', 'asdfgh', 78, 88, 5545, 'sdfg', 'bhnjkm', 'omo', 'jjk', 'qwe', 'ytr', 2.4, 7, 'wert'),
-(10, '77878', '2019-10-04', 'qwer', 'qwe', 'qwer', 787, 5564, 78678, 'qwer', 'qwer', 'qklelknql', 'wsjhjqk', 'qwe4', 'asdfg', 2.4, 7, '23er');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `conteocolecciones`
---
-
-CREATE TABLE `conteocolecciones` (
-  `idConteo` int(250) NOT NULL,
-  `Material` varchar(20) DEFAULT NULL,
-  `ConteoArti` int(100) DEFAULT NULL,
-  `Colecto` varchar(70) DEFAULT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Hora` time(6) DEFAULT NULL,
-  `ObservaConteo` varchar(250) DEFAULT NULL,
-  `IdAnalisisPastas` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `conteocolecciones`
---
-
-INSERT INTO `conteocolecciones` (`idConteo`, `Material`, `ConteoArti`, `Colecto`, `Fecha`, `Hora`, `ObservaConteo`, `IdAnalisisPastas`) VALUES
-(1, 'Ceramico', 1, 'Viridiana', '2019-11-07', '07:05:00.000000', 'Ob', 1),
-(2, 'Basalto', 1, 'Raúl', '2019-11-19', '05:20:00.000000', 'Ob2', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `fotosap`
---
-
-CREATE TABLE `fotosap` (
-  `idImagen` int(6) NOT NULL,
-  `Foto` blob,
-  `IdAnalisisPastas` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `idUsuario` int(250) NOT NULL,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Apellido` varchar(30) DEFAULT NULL,
-  `Contrasena` varchar(30) DEFAULT NULL,
-  `Cargo` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellido`, `Contrasena`, `Cargo`) VALUES
-(1, 'Prueba', 'apellido', '123', 'abc'),
-(2, NULL, NULL, 'ñkñlkjokj´pkj+pki]1', NULL);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `analisispastas`
---
-ALTER TABLE `analisispastas`
-  ADD PRIMARY KEY (`IdAnalisisPastas`);
-
---
--- Indices de la tabla `conteocolecciones`
---
-ALTER TABLE `conteocolecciones`
-  ADD PRIMARY KEY (`idConteo`),
-  ADD KEY `IdAnalisisPastas` (`IdAnalisisPastas`);
-
---
--- Indices de la tabla `fotosap`
---
-ALTER TABLE `fotosap`
-  ADD PRIMARY KEY (`idImagen`),
-  ADD KEY `IdAnalisisPastas` (`IdAnalisisPastas`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idUsuario`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `analisispastas`
---
-ALTER TABLE `analisispastas`
-  MODIFY `IdAnalisisPastas` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `conteocolecciones`
---
-ALTER TABLE `conteocolecciones`
-  MODIFY `idConteo` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `fotosap`
---
-ALTER TABLE `fotosap`
-  MODIFY `idImagen` int(6) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `conteocolecciones`
---
-ALTER TABLE `conteocolecciones`
-  ADD CONSTRAINT `conteocolecciones_ibfk_1` FOREIGN KEY (`IdAnalisisPastas`) REFERENCES `analisispastas` (`IdAnalisisPastas`);
-
---
--- Filtros para la tabla `fotosap`
---
-ALTER TABLE `fotosap`
-  ADD CONSTRAINT `fotosap_ibfk_1` FOREIGN KEY (`IdAnalisisPastas`) REFERENCES `analisispastas` (`IdAnalisisPastas`);
+-- ----------------------------
+-- Records of analisispastas
+-- ----------------------------
+BEGIN;
+INSERT INTO `analisispastas` VALUES (1, '', '2019-10-02', 'ASXD', 'SDCV', 'SDC', 455, 1458, 565, 'SD', 'AS', 'AS', 'AS', 'ASD', 'AS', 2, 4, 'Café, un par de empanadas y la nueva temporada de American Horror Story. A veces ella me pregunta por qué me gustan las series y películas de terror. La respuesta es siempre la misma: no importa mucho el género, importa la historia y la forma de cont', 'inactivo');
+INSERT INTO `analisispastas` VALUES (2, '', '2019-10-27', 'ASXDJ', 'AS', 'ZZ', 785, 147, 874, 'ZX', 'AS', 'AS', 'AS', 'ASD', 'AS', 0.58, 4, 'ASD', 'activo');
+INSERT INTO `analisispastas` VALUES (3, '', '2019-10-27', 'ASXDJ', 'AS', 'ZZ', 785, 147, 874, 'ZX', 'AS', 'AS', 'AS', 'ASD', 'AS', 0.58, 4, 'ASD', 'activo');
+INSERT INTO `analisispastas` VALUES (4, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls', 'activo');
+INSERT INTO `analisispastas` VALUES (5, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls', 'activo');
+INSERT INTO `analisispastas` VALUES (6, '', '2019-10-10', 'qwer', 'qwer', 'qwer', 23456, 123, 543, 'qer', 'q3', 'swer', 'sdf', '234t', 'sdre', 0.4, 2, 'ughufhsofhslslslsllslsllslsls', 'activo');
+INSERT INTO `analisispastas` VALUES (7, '', '2019-10-03', 'gtre', 'sdf', 'dsa', 874, 54, 215, 'qwer', 'erty', 'hbvcxz', 'sdf', 'mnb', 'jhvcx', 4, 78, 'aZSDXCFGVBHNJKM', 'activo');
+INSERT INTO `analisispastas` VALUES (8, '', '2019-10-03', 'gtre', 'sdf', 'dsa', 874, 54, 215, 'qwer', 'erty', 'hbvcxz', 'sdf', 'mnb', 'jhvcx', 4, 78, 'aZSDXCFGVBHNJKM', 'activo');
+INSERT INTO `analisispastas` VALUES (9, '', '2019-10-30', 'ytre', 'qwer', 'asdfgh', 78, 88, 5545, 'sdfg', 'bhnjkm', 'omo', 'jjk', 'qwe', 'ytr', 2.4, 7, 'wert', 'activo');
+INSERT INTO `analisispastas` VALUES (10, '77878', '2019-10-04', 'qwer', 'qwe', 'qwer', 787, 5564, 78678, 'qwer', 'qwer', 'qklelknql', 'wsjhjqk', 'qwe4', 'asdfg', 2.4, 7, '23er', 'activo');
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Table structure for conteocolecciones
+-- ----------------------------
+DROP TABLE IF EXISTS `conteocolecciones`;
+CREATE TABLE `conteocolecciones` (
+  `idConteo` int(250) NOT NULL AUTO_INCREMENT,
+  `Material` varchar(20) NOT NULL,
+  `ConteoArti` int(100) NOT NULL,
+  `Colecto` varchar(70) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Hora` time(6) NOT NULL,
+  `ObservaConteo` varchar(250) DEFAULT NULL,
+  `IdAnalisisPastas` int(4) NOT NULL,
+  `Estado` varchar(255) NOT NULL,
+  PRIMARY KEY (`idConteo`),
+  KEY `IdAnalisisPastas` (`IdAnalisisPastas`),
+  CONSTRAINT `conteocolecciones_ibfk_1` FOREIGN KEY (`IdAnalisisPastas`) REFERENCES `analisispastas` (`IdAnalisisPastas`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of conteocolecciones
+-- ----------------------------
+BEGIN;
+INSERT INTO `conteocolecciones` VALUES (1, 'Ceramico', 1, 'Viridiana', '2019-11-07', '07:05:00.000000', 'Ob', 1, 'activo');
+INSERT INTO `conteocolecciones` VALUES (2, 'Basalto', 1, 'Raúl', '2019-11-19', '05:20:00.000000', 'Ob2', 1, 'activo');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for fotosap
+-- ----------------------------
+DROP TABLE IF EXISTS `fotosap`;
+CREATE TABLE `fotosap` (
+  `idImagen` int(6) NOT NULL AUTO_INCREMENT,
+  `Foto` blob,
+  `IdAnalisisPastas` int(4) DEFAULT NULL,
+  PRIMARY KEY (`idImagen`),
+  KEY `IdAnalisisPastas` (`IdAnalisisPastas`),
+  CONSTRAINT `fotosap_ibfk_1` FOREIGN KEY (`IdAnalisisPastas`) REFERENCES `analisispastas` (`IdAnalisisPastas`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of fotosap
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE `usuarios` (
+  `idUsuario` int(250) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `contrasena` varchar(30) NOT NULL,
+  `cargo` varchar(20) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of usuarios
+-- ----------------------------
+BEGIN;
+INSERT INTO `usuarios` VALUES (1, 'Fernando', 'Ochoa', '12345', 'Arqueologo', 'prueba');
+INSERT INTO `usuarios` VALUES (2, 'Daniela', 'Hernandez', '12345', 'Administrador', 'dany');
+INSERT INTO `usuarios` VALUES (3, 'Francisco', 'Hernandez', '12345', 'Administrador', 'fran');
+INSERT INTO `usuarios` VALUES (5, 'Luis', 'Guzman', '12345', 'Administrador', 'luis');
+INSERT INTO `usuarios` VALUES (6, 'lola', 'lola', 'lola', 'Administrador', 'lola');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
