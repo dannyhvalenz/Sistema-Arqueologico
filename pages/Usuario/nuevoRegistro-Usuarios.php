@@ -92,32 +92,40 @@
                 <div class="row">
                     <div class="col-6">
                         <label>Nombre</label>
-                        <input class="form-control" id="Usuario" type="text" maxlength="30" minlength="0" placeholder="Nombre" name="nombre">
+                        <input class="form-control" id="nombre" type="text" maxlength="30" minlength="0" placeholder="Nombre" name="nombre">
                     </div>
                     <div class="col-6">
-                        <label>Apellidos</label>
-                        <input class="form-control" id="Apellidos" type="text" maxlength="30" minlength="0" placeholder="Apellidos"
+                        <label>Apellido(s)</label>
+                        <input class="form-control" id="apellido" type="text" maxlength="30" minlength="0" placeholder="Apellido(s)"
                             name="apellido">
                     </div>
                     <div class="col-6">
-                        <label>Contraseña</label>
-                        <input class="form-control" id="Contrasena" type="text" maxlength="30" minlength="0"
-                            placeholder="Contraseña" name="contrasena">
+                        <label>Nombre de usuario</label>
+                        <input class="form-control" id="usuario" type="text" maxlength="30" minlength="0" placeholder="Usuario"
+                            name="usuario">
                     </div>
                     <div class="col-6">
                         <label>Cargo</label>
                         <select class="form-control"  id="comment" maxlength="30" minlength="0"
                             placeholder="Cargo" name="cargo" id="Cargo">
-                            <option value="none" selected disabled hidden>Cargo</option>
-                            <option value="Administrador">Administrador</option>
+                            <option value="Administrador" selected>Administrador</option>
                             <option value="Arqueologo">Arqueologo</option>
                         </select>    
+                    </div>
+                    <div class="col-6">
+                        <label>Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" name="contrasena" id="contrasena" class="form-control" data-toggle="password" placeholder="Contraseña">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-eye"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col d-flex flex-row-reverse" style="margin-top:20px">
                 <input type="submit" class="btn btn-success" value="Guardar Registro">
-                <a href="../Admin/inicioAdministrador.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar
+                <a href="inicioAdministrador.php" type="submit" class="btn btn-danger" style="margin-right:20px">Cancelar
                     Registro</a>
             </div>
         </form>
@@ -138,15 +146,35 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
+    
+    
+    <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+    
+    /**
+    * @author Abdo-Hamoud <abdo.host@gmail.com>
+    * https://github.com/Abdo-Hamoud/bootstrap-show-password
+    * version: 1.0
+    */
+
+    !function(a){a(function(){a('[data-toggle="password"]').each(function(){var b = a(this); var c = a(this).parent().find(".input-group-text"); c.css("cursor", "pointer").addClass("input-password-hide"); c.on("click", function(){if (c.hasClass("input-password-hide")){c.removeClass("input-password-hide").addClass("input-password-show"); c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); b.attr("type", "text")} else{c.removeClass("input-password-show").addClass("input-password-hide"); c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); b.attr("type", "password")}})})})}(window.jQuery);
+
+
+    }
+
+    //]]>
+    </script>
+
 
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
-    $('textarea').each(function() {
-        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
-    }).on('input', function() {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
-    });
+        $('textarea').each(function() {
+            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        }).on('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
     </script>    
 </body>
 

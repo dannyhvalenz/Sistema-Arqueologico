@@ -35,6 +35,17 @@
             </thead>
         ';
         while($row = mysqli_fetch_array($result)){
+            if ($row["Estado"]=='activo'){
+                $estado = '<td>
+                <a href="../../functions/Conteo/activar-desactivar-conteo.php?idConteo='.$row["idConteo"].'&Estado='.$row["Estado"].'"
+                    class="btn btn-outline-success '.$row["Estado"].'" role="button" id="btnActivar" data-toggle="modal">Activado</a>
+                </td>';
+            } else if ($row["Estado"]=='inactivo'){
+                $estado = '<td>
+                <a href="../../functions/Conteo/activar-desactivar-conteo.php?idConteo='.$row["idConteo"].'&Estado='.$row["Estado"].'"
+                    class="btn btn-outline-danger '.$row["Estado"].'" role="button" id="btnActivar" data-toggle="modal">Desactivado</a>
+                </td>';
+            }
             $output .= '
             <tbody>
             <tr>
@@ -46,13 +57,7 @@
                 <td>'.$row["Hora"].'</td>
                 <td>'.$row["IdAnalisisPastas"].'</td>
                 <td>'.$row["ObservaConteo"].'</td>
-                <td><a href="actualizar-conteo.php?idConteo='.$row["idConteo"].'"
-                    class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
-                </td>
-                <td><a href="../../functions/Conteo/eliminarConteo.php?idConteo='.$row["idConteo"].'"
-                    class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
-                </tr>
-            ';
+                '.$estado;
         }
         echo $output;
     } else {
