@@ -66,13 +66,13 @@
                             
                             echo "<script>console.log('Sesion de: " . $user . "' );</script>";
 
-                            $sql = "SELECT * FROM usuarios WHERE Nombre='$user'";
+                            $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
 
                             if(mysqli_num_rows($result) > 0){
                                 while($row = mysqli_fetch_array($result)){
-                                    echo $row['Nombre'] . " " .$row['Apellido'];
+                                    echo $row['nombre'] . " " .$row['apellido'];
                                 }
                             } else {
                                 echo "Nombre del Usuario";
