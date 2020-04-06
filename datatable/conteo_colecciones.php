@@ -3,10 +3,10 @@
 	require 'conexion.php';
 	
 	/* Nombre de La Tabla */
-	$Tabla = "conteocolecciones";
+	$Tabla = "vista_conteo";
 	
 	/* Array que contiene los nombres de las columnas de la tabla*/
-	$analisisColumnas = array( 'idConteo', 'Material', 'ConteoArti', 'Colecto', 'FechaC', 'HoraC', 'ObservaConteo', 'IdAnalisisPastas' );
+	$analisisColumnas = array( 'Utme', 'Utmn', 'Latitud', 'Bolsa', 'Material', 'ConteoArti', 'Patron', 'Colecto', 'FechaC', 'HoraC', 'Analizo', 'ObservaConteo', 'idConteo' );
 	//
 	/* columna indexada se toma el id de analisis*/
 	$sIndexColumn = "idConteo";

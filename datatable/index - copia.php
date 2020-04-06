@@ -88,14 +88,19 @@
 				<table class="table table-bordered" id="mitabla">
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>Material</th>
-							<th>ConteoArti</th>
-							<th>Colecto</th>
-							<th>Fecha</th>
-							<th>Hora</th>
-							<th>Observaciones</th>
-							<th>IdAna.</th>
+							<th>Utme</th>
+                            <th>Utmn</th>
+                            <th>Latitud</th>
+                            <th>Bolsa</th>
+                            <th>Material</th>
+                            <th>ConteoArti</th>
+                            <th>Patron</th>
+                            <th>Colecto</th>
+                            <th>FechaC</th>
+                            <th>HoraC</th>
+                            <th>Analizo</th>
+                            <th>ObservaConteo</th>
+                            <th>idConteo</th>
 							<th></th>
 							<th></th>
 						</tr>
