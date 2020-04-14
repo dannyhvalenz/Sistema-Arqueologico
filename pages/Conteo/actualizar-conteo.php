@@ -1,11 +1,5 @@
-<?php
-   require ('../../functions/conexion/conexion.php');
-   $idConteo = $_GET['idConteo'];
-   
-   $sql = "SELECT * FROM conteocolecciones WHERE idConteo='$idConteo'";
-   
-   $resultado = mysqli_query($conexion, $sql);
-   $row = mysqli_fetch_array($resultado)  
+<?php 
+    require ('../../functions/conexion/conexion.php');
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +42,7 @@
             header("Location:login.php");
         }
     ?>
+
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,11 +60,27 @@
                     <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones</a>
                 </li>
             </ul>
+
             <form class="form-inline my-2 my-lg-0">
                 <li class="nav-item">
                     <a class="nav-link text-light">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Nombre del Usuario
+                        <?php 
+                            $user = $_SESSION['usuario'];
+                            $sqlUser = "
+                                SELECT * FROM usuarios WHERE usuario='$user'
+                            ";
+
+                            $result = mysqli_query($conexion, $sqlUser);
+
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+                                    echo $row['nombre'] . " " .$row['apellido'];
+                                }
+                            } else {
+                                echo "Nombre del Usuario";
+                            }              
+                        ?>
                     </a>
                 </li>
                 <a class="btn btn-outline-light btn-lg" href="../../functions/Sesion/cerrarSesion.php">
@@ -79,9 +90,22 @@
             </form>
         </div>
     </nav>
+
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Actualizar Conteo de Colección</h2>
     </div>
+
+    <?php
+        $idConteo = $_GET['idConteo'];
+    
+        $sql = "
+            SELECT * FROM conteocolecciones WHERE idConteo='$idConteo'
+        ";
+    
+        $resultado = mysqli_query($conexion, $sql);
+        $row = mysqli_fetch_array($resultado);
+    ?>
+
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
