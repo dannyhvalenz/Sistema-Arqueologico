@@ -1,11 +1,11 @@
 <?php
     //fetch.php
-    $connect = mysqli_connect("localhost", "root", "", "abdarqueologia");
-    //require ('../../functions/conexion/conexion.php');
+    require ('../../functions/conexion/conexion.php');
+    
     $output = '';
 
     if(isset($_POST["query"])){
-        $search = mysqli_real_escape_string($connect, $_POST["query"]);
+        $search = mysqli_real_escape_string($conexion, $_POST["query"]);
         $query = "
         SELECT * FROM conteocolecciones 
         WHERE IdConteo LIKE '%".$search."%'
@@ -15,7 +15,7 @@
         $query = "SELECT * FROM conteocolecciones ORDER BY IdConteo";
     }
 
-    $result = mysqli_query($connect, $query);
+    $result = mysqli_query($conexion, $query);
 
     if(mysqli_num_rows($result) > 0){
         $output .= '
