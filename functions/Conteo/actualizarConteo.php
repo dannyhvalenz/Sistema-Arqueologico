@@ -11,16 +11,17 @@
     $idConteo = $_POST['idConteo'];
 
     $sql = "
-        UPDATE conteocolecciones SET Material='$Material', ConteoArti='$ConteoArti', Fecha='$Fecha' , Hora='$Hora' , ObservaConteo='$ObservaConteo', IdAnalisisPastas='$IdAnalisisPastas' WHERE idConteo = '$idConteo'";
+        UPDATE conteocolecciones SET Material='$Material', ConteoArti='$ConteoArti', Fecha='$Fecha' , Hora='$Hora' , 
+            ObservaConteo='$ObservaConteo', IdAnalisisPastas='$IdAnalisisPastas' , Colecto='$Colecto' WHERE idConteo='$idConteo'
+    ";
 
     
     $resultado = mysqli_query($conexion, $sql);
 
-    if($resultado==true){    
+    if($resultado == true){    
         header("Location: ../../pages/Conteo/conteo-Colecciones.php");
     } else {
-        echo "<script>console.log('Sesion de: " . $sql . "' );</script>";
-       // header("Location: ../../pages/Otras/nodisponible.php");
+        header("Location: ../../pages/Otras/nodisponible.php");
     }
 
     mysqli_free_result($resultado);
