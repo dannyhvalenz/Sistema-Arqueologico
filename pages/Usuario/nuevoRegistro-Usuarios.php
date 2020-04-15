@@ -85,24 +85,24 @@
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form" action="../../functions/Admin/crearUsuarios.php" method="POST"
+        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Admin/crearUsuarios.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
 
             <div class="container">
                 <div class="row">
                     <div class="col-6">
                         <label>Nombre</label>
-                        <input class="form-control" id="nombre" type="text" maxlength="30" minlength="0" placeholder="Nombre" name="nombre">
+                        <input class="form-control" id="nombre" type="text" maxlength="30" minlength="0" placeholder="Nombre" name="nombre" required>
                     </div>
                     <div class="col-6">
                         <label>Apellido(s)</label>
                         <input class="form-control" id="apellido" type="text" maxlength="30" minlength="0" placeholder="Apellido(s)"
-                            name="apellido">
+                            name="apellido" required>
                     </div>
                     <div class="col-6">
                         <label>Nombre de usuario</label>
                         <input class="form-control" id="usuario" type="text" maxlength="30" minlength="0" placeholder="Usuario"
-                            name="usuario">
+                            name="usuario" required>
                     </div>
                     <div class="col-6">
                         <label>Cargo</label>
@@ -115,7 +115,7 @@
                     <div class="col-6">
                         <label>Contraseña</label>
                         <div class="input-group">
-                            <input type="password" name="contrasena" id="contrasena" class="form-control" data-toggle="password" placeholder="Contraseña">
+                            <input type="password" name="contrasena" id="contrasena" class="form-control" data-toggle="password" placeholder="Contraseña" required>
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fa fa-eye"></i></span>
                             </div>
@@ -146,7 +146,7 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
-    
+    <script src="../../js/validarcampos.js"></script>
     
     <script type="text/javascript">//<![CDATA[
 

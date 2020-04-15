@@ -19,7 +19,8 @@
     if($resultado==true){    
         header("Location: ../../pages/Conteo/conteo-Colecciones.php");
     } else {
-        header("Location: ../../pages/Otras/nodisponible.php");
+        echo "<script>console.log('Sesion de: " . $sql . "' );</script>";
+       // header("Location: ../../pages/Otras/nodisponible.php");
     }
 
     mysqli_free_result($resultado);

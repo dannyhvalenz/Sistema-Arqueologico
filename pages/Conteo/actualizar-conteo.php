@@ -109,7 +109,7 @@
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form" action="../../functions/Conteo/actualizarConteo.php" method="POST"
+        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/actualizarConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
 
             <div class="container">
@@ -128,43 +128,43 @@
                                 </div>
                             </div>
                             <input class="d-none" name="IdAnalisisPastas" readonly="readonly" aria-hidden="true"
-                                type="text" value="<?php echo $row["IdAnalisisPastas"]?>"/>
+                                type="text" value="<?php echo $row["IdAnalisisPastas"]?>" required>
                         </div>
                         
                     </div>
                     <div class="col-6">
                         <label>Fecha</label>
-                        <input class="form-control" id="Fecha" type="date" name="Fecha" value="<?php echo $row['Fecha']?>">
+                        <input class="form-control" id="Fecha" type="date" name="Fecha" value="<?php echo $row['Fecha']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label>Hora</label>
                         <input class="form-control" id="Hora" type="time" maxlength="20" minlength="0"
-                            placeholder="Hora" name="Hora" value="<?php echo date("H:i", strtotime($row['Hora'])) ?>">
+                            placeholder="Hora" name="Hora" value="<?php echo date("H:i", strtotime($row['Hora'])) ?>" required>
                     </div>
 
                     <div class="col-6 validate-input" data-validate="Ingresa el material">
                         <label>Material</label>
                         <input class="form-control" id="Material" type="text" maxlength="20" minlength="0"
-                            placeholder="Material" name="Material" value="<?php echo $row['Material']?>">
+                            placeholder="Material" name="Material" value="<?php echo $row['Material']?>" required>
                     </div>
                     <div class="col-6">
                         <label>Conteo Artificial</label>
                         <input class="form-control" id="ConteoArti" type="number" pattern="{0-9}" min="0"
                             max="999999999999" maxlength="12" minlength="0" placeholder="Conteo Artificial"
-                            name="ConteoArti"  value="<?php echo $row['ConteoArti']?>">
+                            name="ConteoArti"  value="<?php echo $row['ConteoArti']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label>Colectó</label>
                         <input class="form-control" id="Colecto" type="text" maxlength="30" minlength="0"
-                            placeholder="Colectó" name="Colecto"  value="<?php echo $row['Colecto']?>">
+                            placeholder="Colectó" name="Colecto"  value="<?php echo $row['Colecto']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;"  
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required
                             ><?php echo $row['ObservaConteo']?></textarea>
                     </div>
                     <div class="col-6">
@@ -195,6 +195,7 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
+    <script src="../../js/validarcampos.js"></script>
 
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
