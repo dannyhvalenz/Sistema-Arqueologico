@@ -52,7 +52,7 @@
 					<img src="../../img/logo.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="../../functions/Sesion/iniciarSesion.php" method="GET" >
+				<form class="login100-form validate-form" action="../../functions/Sesion/iniciarSesion.php" method="POST" >
 					<span class="login100-form-title">
 						Iniciar Sesión
 					</span>
@@ -72,6 +72,8 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+		
+					<?php $reasons = array("password" => "Usuario o contraseña incorrecta", "blank" => "Hay campos vacios"); if ($_GET["loginFailed"]) echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; ?>
 					
 					<div class="container-login100-form-btn">
 						<button type="submit" id="" class="login100-form-btn">

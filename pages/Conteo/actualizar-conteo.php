@@ -164,8 +164,10 @@
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required
-                            ><?php echo $row['ObservaConteo']?></textarea>
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" 
+                            style="font-size: 10pt;" required>
+                                <?php echo $row['ObservaConteo']?>
+                        </textarea>
                     </div>
                     <div class="col-6">
                         <input name="idConteo"  value="<?php echo $row['idConteo']?>" hidden>
