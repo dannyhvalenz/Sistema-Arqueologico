@@ -1,11 +1,5 @@
-<?php
-   require ('../../functions/conexion/conexion.php');
-   $idConteo = $_GET['idConteo'];
-   
-   $sql = "SELECT * FROM conteocolecciones WHERE idConteo='$idConteo'";
-   
-   $resultado = mysqli_query($conexion, $sql);
-   $row = mysqli_fetch_array($resultado)  
+<?php 
+    require ('../../functions/conexion/conexion.php');
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +42,7 @@
             header("Location:login.php");
         }
     ?>
+
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,11 +60,27 @@
                     <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones</a>
                 </li>
             </ul>
+
             <form class="form-inline my-2 my-lg-0">
                 <li class="nav-item">
                     <a class="nav-link text-light">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Nombre del Usuario
+                        <?php 
+                            $user = $_SESSION['usuario'];
+                            $sqlUser = "
+                                SELECT * FROM usuarios WHERE usuario='$user'
+                            ";
+
+                            $result = mysqli_query($conexion, $sqlUser);
+
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result)){
+                                    echo $row['nombre'] . " " .$row['apellido'];
+                                }
+                            } else {
+                                echo "Nombre del Usuario";
+                            }              
+                        ?>
                     </a>
                 </li>
                 <a class="btn btn-outline-light btn-lg" href="../../functions/Sesion/cerrarSesion.php">
@@ -79,13 +90,26 @@
             </form>
         </div>
     </nav>
+
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Actualizar Conteo de Colección</h2>
     </div>
+
+    <?php
+        $idConteo = $_GET['idConteo'];
+    
+        $sql = "
+            SELECT * FROM conteocolecciones WHERE idConteo='$idConteo'
+        ";
+    
+        $resultado = mysqli_query($conexion, $sql);
+        $row = mysqli_fetch_array($resultado);
+    ?>
+
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form" action="../../functions/Conteo/actualizarConteo.php" method="POST"
+        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/actualizarConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
 
             <div class="container">
@@ -104,44 +128,46 @@
                                 </div>
                             </div>
                             <input class="d-none" name="IdAnalisisPastas" readonly="readonly" aria-hidden="true"
-                                type="text" value="<?php echo $row["IdAnalisisPastas"]?>"/>
+                                type="text" value="<?php echo $row["IdAnalisisPastas"]?>" required>
                         </div>
                         
                     </div>
                     <div class="col-6">
                         <label>Fecha</label>
-                        <input class="form-control" id="Fecha" type="date" name="Fecha" value="<?php echo $row['Fecha']?>">
+                        <input class="form-control" id="Fecha" type="date" name="Fecha" value="<?php echo $row['Fecha']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label>Hora</label>
                         <input class="form-control" id="Hora" type="time" maxlength="20" minlength="0"
-                            placeholder="Hora" name="Hora" value="<?php echo date("H:i", strtotime($row['Hora'])) ?>">
+                            placeholder="Hora" name="Hora" value="<?php echo date("H:i", strtotime($row['Hora'])) ?>" required>
                     </div>
 
                     <div class="col-6 validate-input" data-validate="Ingresa el material">
                         <label>Material</label>
                         <input class="form-control" id="Material" type="text" maxlength="20" minlength="0"
-                            placeholder="Material" name="Material" value="<?php echo $row['Material']?>">
+                            placeholder="Material" name="Material" value="<?php echo $row['Material']?>" required>
                     </div>
                     <div class="col-6">
                         <label>Conteo Artificial</label>
                         <input class="form-control" id="ConteoArti" type="number" pattern="{0-9}" min="0"
                             max="999999999999" maxlength="12" minlength="0" placeholder="Conteo Artificial"
-                            name="ConteoArti"  value="<?php echo $row['ConteoArti']?>">
+                            name="ConteoArti"  value="<?php echo $row['ConteoArti']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label>Colectó</label>
                         <input class="form-control" id="Colecto" type="text" maxlength="30" minlength="0"
-                            placeholder="Colectó" name="Colecto"  value="<?php echo $row['Colecto']?>">
+                            placeholder="Colectó" name="Colecto"  value="<?php echo $row['Colecto']?>" required>
                     </div>
 
                     <div class="col-6">
                         <label for="comment">Observaciones</label>
                         <textarea class="form-control" rows="2" id="comment" maxlength="500" minlength="0"
-                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;"  
-                            ><?php echo $row['ObservaConteo']?></textarea>
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" 
+                            style="font-size: 10pt;" required>
+                                <?php echo $row['ObservaConteo']?>
+                        </textarea>
                     </div>
                     <div class="col-6">
                         <input name="idConteo"  value="<?php echo $row['idConteo']?>" hidden>
@@ -171,6 +197,7 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
+    <script src="../../js/validarcampos.js"></script>
 
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>

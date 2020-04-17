@@ -1,15 +1,15 @@
 <?php
     require ('../conexion/conexion.php');
-	
+    
     session_start();
    
     if(isset($_SESSION["id"])){
         header("Location: ../../pages/Pastas/analisis-Pastas.php");
     }
    
-    if(!empty($_GET)){
-        $usuario = $_GET['usuario'];
-        $contrasena = $_GET['contrasena'];
+    if(!empty($_POST)){
+        $usuario = $_POST['usuario'];
+        $contrasena = $_POST['contrasena'];
         
         $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'";
         
@@ -28,31 +28,12 @@
                 }
             }
         }else{
-            //$respuesta = "Invalido"
-            //return $respuesta;
+            die(header("location:../../pages/Login/login.php?loginFailed=true&reason=password"));
+            //header("Location:../../pages/Login/login.php?login=false");
+            //echo "<script> alert('Usuario o contraseña inválidos'); </script>";
+            /*echo "<script>
+            document.getElementById('mensaje').style.visibility = 'visible';
+           </script>";*/
         }  
     }
-
-/*
-       $usuario = mysqli_real_escape_string($mysqli,$_POST['usuario']);
-       $contrasena = mysqli_real_escape_string($mysqli,$_POST['contrasena']);
-       $error = '';
-       
-       //$sha1_pass = sha1($contrasena);
-                                                                                            
-       $sql = "
-       SELECT id, cargo FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'
-       ";
-       $result=$mysqli->query($sql);
-       $rows = $result->num_rows;
-       
-       if($rows > 0) {
-           $row = $result->fetch_assoc();
-           $_SESSION['id'] = $row['id'];
-           
-                header("Location: ../../pages/Pastas/analisis-Pastas.php");
-           } else {
-                $error = "El usuario o contraseña son incorrectos";
-       }
-   }*/
 ?>
