@@ -3,11 +3,11 @@
 	require 'conexion.php';
 	
 	/* Nombre de La Tabla */
-	$Tabla = "vista_analisis";
+	$Tabla = "vistafecha";
 	
 	/* Array que contiene los nombres de las columnas de la tabla*/
-	$analisisColumnas = array( 'IdAnalisisPastas', 'Fecha', 'Cuadrante', 'Sitio', 'Patron', 'Utme', 'Utmn', 'Latitud', 'Analizo', 'Bolsa', 'Tipo', 'Tratamiento', 'Modificacion', 'FormasTratamientos', 'Peso', 'TotalFragmentos', 'Observaciones' );
-	//
+	$analisisColumnas = array( 'IdAnalisisPastas', 'DATE_FORMAT('Fecha', "%d/%m/%Y")', 'Cuadrante', 'Sitio', 'Patron', 'Utme', 'Utmn', 'Latitud', 'Analizo', 'Bolsa', 'Tipo', 'Tratamiento', 'Modificacion', 'FormasTratamientos', 'Peso', 'TotalFragmentos', 'Observaciones' );
+	//sssssssss
 	/* columna indexada se toma el id de analisis*/
 	$sIndexColumn = "IdAnalisisPastas";
 	
