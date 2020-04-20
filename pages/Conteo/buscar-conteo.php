@@ -42,8 +42,8 @@
                 <td>'.$row["Material"].'</td>
                 <td>'.$row["ConteoArti"].'</td>
                 <td>'.$row["Colecto"].'</td>
-                <td>'.$row["FechaC"].'</td>
-                <td>'.$row["HoraC"].'</td>
+                <td>'.$row["Fecha"].'</td>
+                <td>'.$row["Hora"].'</td>
                 <td>'.$row["IdAnalisisPastas"].'</td>
                 <td>'.$row["ObservaConteo"].'</td>
                 <td><a href="actualizar-conteo.php?idConteo='.$row["idConteo"].'"

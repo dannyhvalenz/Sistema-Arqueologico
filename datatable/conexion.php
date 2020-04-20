@@ -1,6 +1,6 @@
 <?php
 	
-	$mysqli = new mysqli("localhost", "root", "", "abdarqueologia");
+	$mysqli = new mysqli("localhost", "root", "12345", "abdarqueologia");
 	
 	if($mysqli->connect_error){
 		

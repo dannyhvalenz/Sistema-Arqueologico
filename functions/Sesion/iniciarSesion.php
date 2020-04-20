@@ -28,12 +28,8 @@
                 }
             }
         }else{
-            die(header("location:../../pages/Login/login.php?loginFailed=true&reason=password"));
-            //header("Location:../../pages/Login/login.php?login=false");
-            //echo "<script> alert('Usuario o contraseña inválidos'); </script>";
-            /*echo "<script>
-            document.getElementById('mensaje').style.visibility = 'visible';
-           </script>";*/
+            die(header("Location:../../pages/Login/login.php?loginFailed=true&reason=password"));
+            
         }  
     }
 ?>

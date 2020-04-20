@@ -99,14 +99,13 @@
         <p>Debe de ingresar los datos correctamente:</p>
         <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/crearConteo.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
-
             <div class="container">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group col">
                             <label>Análisis de pastas</label>
-                            <select class="selectpicker form-control form-control-lg" id="comboAnalisisPastas" data-live-search="true" required>
-                                
+                            <select class="selectpicker form-control form-control-lg" id="comboAnalisisPastas" name="comboAnalisisPastas" data-live-search="true" required>
+                
                             </select>
                         </div>
                     </div>
