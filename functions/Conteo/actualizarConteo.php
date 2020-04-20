@@ -1,7 +1,7 @@
 <?php
     require ('../conexion/conexion.php');
 
-    $IdAnalisisPastas = $_POST['IdAnalisisPastas'];
+    $IdAnalisisPastas = $_POST['comboAnalisisPastas'];
     $Fecha = $_POST['Fecha'];
     $Hora = $_POST['Hora'];
     $Material = $_POST['Material'];
