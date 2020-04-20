@@ -85,8 +85,6 @@
 		</div>
 		
 	</div>
-</div>
-	
 <!--SCRIPTS-->	
 	<script src="../../other/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../../other/bootstrap/js/popper.js"></script>
@@ -94,6 +92,5 @@
 	<script src="../../other/select2/select2.min.js"></script>
 	<script src="../../other/tilt/tilt.jquery.min.js"></script>
 	<script src="../../js/main.js"></script>
-</script>
 </body>
 </html>
