@@ -115,23 +115,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <label>Análisis de pastas</label>
-                        <div class="dropdown hierarchy-select" id="combo">
-                            <button type="button" class="btn btn-outline-success btn-md dropdown-toggle col" id="example-two-button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $row["IdAnalisisPastas"].".- ".$row["Fecha"]?></button>
-                            <div class="dropdown-menu col" aria-labelledby="example-two-button">
-                                <div class="hs-searchbox">
-                                    <input type="text" class="form-control" autocomplete="off">
-                                </div>
-                                <div class="hs-menu-inner" id="comboAnalisisPastas" >
-                                    
-                                </div>
-                            </div>
-                            <input class="d-none" name="IdAnalisisPastas" readonly="readonly" aria-hidden="true"
-                                type="text" value="<?php echo $row["IdAnalisisPastas"]?>" required>
+                        <div class="form-group col">
+                            <label>Análisis de pastas</label>
+                            <select class="selectpicker form-control form-control-lg" id="comboAnalisisPastas" name="comboAnalisisPastas" data-live-search="true" required>
+                
+                            </select>
                         </div>
-                        
                     </div>
+
                     <div class="col-6">
                         <label>Fecha</label>
                         <input class="form-control" id="Fecha" type="date" name="Fecha" value="<?php echo $row['Fecha']?>" required>
@@ -223,12 +214,13 @@
 
         load_data();
 
-        function load_data(query) {
+        function load_data(query, idAnalisisPastas) {
             $.ajax({
                 url: "comboAnalisis.php",
                 method: "POST",
                 data: {
-                    query: query
+                    query: query,
+                    idAnalisisPastas : <?php echo $row["IdAnalisisPastas"]?>
                 },
                 success: function(data) {
                     $('#comboAnalisisPastas').html(data);
@@ -237,6 +229,7 @@
         }
     });
     </script>
+
 </body>
 
 </html>
