@@ -2,10 +2,10 @@
   "id": "3ac3bca1-a2ed-4eeb-befa-213a622593e1",
   "version": "2.0",
   "name": "Sistema-Arqueologia",
-  "url": "http://localhost/Sistema-Arqueologico/pages/Login/login.php",
+  "url": "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php",
   "tests": [{
     "id": "b224ef8f-fadc-4c70-a61a-090649861034",
-    "name": "Login Admin",
+    "name": "Login Admin - Flujo Normal",
     "commands": [{
       "id": "200d16f4-5f7e-4d1c-aaf1-91c77f93b13f",
       "comment": "",
@@ -112,7 +112,7 @@
     }]
   }, {
     "id": "59b3d2d5-c4a2-43da-8e30-6dc336e98219",
-    "name": "Login Arqueologo",
+    "name": "Login Arqueologo - Flujo Normal",
     "commands": [{
       "id": "c2f4bfe1-4257-41da-87ba-c6ffe9e590c4",
       "comment": "",
@@ -217,6 +217,655 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "7ddc9c67-b363-41d4-ba7d-c43d74d77656",
+    "name": "Agregar Conteo",
+    "commands": [{
+      "id": "453d6b79-3623-494e-88f4-85266d6e6efb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2fcf3127-eaa7-40cf-ad64-aaca400bf948",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1195x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d4775834-8451-4a22-9aa9-0822c9736381",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nuevo Registro",
+      "targets": [
+        ["linkText=Nuevo Registro", "linkText"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//a[contains(@href, 'nuevoRegistro-Conteo.php')]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Nuevo Registro')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9219f54-9016-4732-838d-a8bbe3654e16",
+      "comment": "",
+      "command": "click",
+      "target": "css=.dropdown-toggle",
+      "targets": [
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'1.- 2019-10-02')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "73a4879f-0dac-41d0-a1f5-3bcc59d77ecc",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(8) .text",
+      "targets": [
+        ["css=li:nth-child(8) .text", "css:finder"],
+        ["xpath=//li[8]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'8.- 2019-10-03')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "79c3fa09-9d6a-4871-a0c8-80f60a33b74d",
+      "comment": "",
+      "command": "select",
+      "target": "id=comboAnalisisPastas",
+      "targets": [],
+      "value": "label=8.- 2019-10-03"
+    }, {
+      "id": "e222393e-268a-4bac-90e4-2262fef14a92",
+      "comment": "",
+      "command": "click",
+      "target": "id=Fecha",
+      "targets": [
+        ["id=Fecha", "id"],
+        ["name=Fecha", "name"],
+        ["css=#Fecha", "css:finder"],
+        ["xpath=//input[@id='Fecha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e463dd1a-8427-4f5e-a127-29e27ef6ea3d",
+      "comment": "",
+      "command": "type",
+      "target": "id=Fecha",
+      "targets": [
+        ["id=Fecha", "id"],
+        ["name=Fecha", "name"],
+        ["css=#Fecha", "css:finder"],
+        ["xpath=//input[@id='Fecha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2020-04-19"
+    }, {
+      "id": "b706e231-faec-4b41-a8f3-a1b9b20be8a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=Hora",
+      "targets": [
+        ["id=Hora", "id"],
+        ["name=Hora", "name"],
+        ["css=#Hora", "css:finder"],
+        ["xpath=//input[@id='Hora']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88908823-ada7-4a18-8e41-71e0f94e07ac",
+      "comment": "",
+      "command": "click",
+      "target": "id=Hora",
+      "targets": [
+        ["id=Hora", "id"],
+        ["name=Hora", "name"],
+        ["css=#Hora", "css:finder"],
+        ["xpath=//input[@id='Hora']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "666239c7-38a8-47ff-a065-95336276ba35",
+      "comment": "",
+      "command": "type",
+      "target": "id=Hora",
+      "targets": [
+        ["id=Hora", "id"],
+        ["name=Hora", "name"],
+        ["css=#Hora", "css:finder"],
+        ["xpath=//input[@id='Hora']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "11:01"
+    }, {
+      "id": "01c1b7ef-0d7f-484c-aafd-7604f5e9641e",
+      "comment": "",
+      "command": "type",
+      "target": "id=Hora",
+      "targets": [
+        ["id=Hora", "id"],
+        ["name=Hora", "name"],
+        ["css=#Hora", "css:finder"],
+        ["xpath=//input[@id='Hora']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "11:11"
+    }, {
+      "id": "6e4a9ed5-2078-462f-b771-1dccaaf3c19e",
+      "comment": "",
+      "command": "click",
+      "target": "id=Material",
+      "targets": [
+        ["id=Material", "id"],
+        ["name=Material", "name"],
+        ["css=#Material", "css:finder"],
+        ["xpath=//input[@id='Material']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "98c490c6-a62d-4413-8c4f-db1162079cdf",
+      "comment": "",
+      "command": "type",
+      "target": "id=Material",
+      "targets": [
+        ["id=Material", "id"],
+        ["name=Material", "name"],
+        ["css=#Material", "css:finder"],
+        ["xpath=//input[@id='Material']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "Marfil"
+    }, {
+      "id": "8eb54417-60cf-430e-89b3-43d8c93f50f7",
+      "comment": "",
+      "command": "click",
+      "target": "id=ConteoArti",
+      "targets": [
+        ["id=ConteoArti", "id"],
+        ["name=ConteoArti", "name"],
+        ["css=#ConteoArti", "css:finder"],
+        ["xpath=//input[@id='ConteoArti']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8681d424-de7e-4308-91ba-0854b7b661c6",
+      "comment": "",
+      "command": "type",
+      "target": "id=ConteoArti",
+      "targets": [
+        ["id=ConteoArti", "id"],
+        ["name=ConteoArti", "name"],
+        ["css=#ConteoArti", "css:finder"],
+        ["xpath=//input[@id='ConteoArti']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "200"
+    }, {
+      "id": "1c586c3c-63f9-493a-9b90-45fea4cfe5a2",
+      "comment": "",
+      "command": "click",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f2c0c2a2-bf32-4b35-990e-61cc0b00a030",
+      "comment": "",
+      "command": "type",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "Julia Roman"
+    }, {
+      "id": "d6058e2b-58ba-4d5f-b399-025920169795",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-horizontal",
+      "targets": [
+        ["css=.form-horizontal", "css:finder"],
+        ["xpath=//form[@action='../../functions/Conteo/crearConteo.php']", "xpath:attributes"],
+        ["xpath=//div[2]/form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f00e4a4-2d97-4b5d-b9ef-45b0c823f342",
+      "comment": "",
+      "command": "click",
+      "target": "id=comment",
+      "targets": [
+        ["id=comment", "id"],
+        ["name=Observaciones", "name"],
+        ["css=#comment", "css:finder"],
+        ["xpath=//textarea[@id='comment']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1545528-7c42-472a-8aa6-e4e18436c089",
+      "comment": "",
+      "command": "type",
+      "target": "id=comment",
+      "targets": [
+        ["id=comment", "id"],
+        ["name=Observaciones", "name"],
+        ["css=#comment", "css:finder"],
+        ["xpath=//textarea[@id='comment']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Observaciones"
+    }, {
+      "id": "87e20b91-ba94-450f-9c59-2e976df94afd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//input[@value='Guardar Registro']", "xpath:attributes"],
+        ["xpath=//form/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "74cb5579-1261-41d3-9102-1a37b9ea6056",
+    "name": "Editar Conteo",
+    "commands": [{
+      "id": "5bcc26c5-c684-4d00-8f48-ab1fee15fd0b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d6f21ee3-1d9c-44df-bc51-eb1b31fa2ea9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9bcebfaf-3f65-431b-8896-6f239324d92d",
+      "comment": "",
+      "command": "click",
+      "target": "id=editar",
+      "targets": [
+        ["id=editar", "id"],
+        ["css=tbody:nth-child(2) #editar", "css:finder"],
+        ["xpath=//a[@id='editar']", "xpath:attributes"],
+        ["xpath=//div[@id='result']/div/table/tbody/tr/td[9]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'actualizar-conteo.php?idConteo=1')]", "xpath:href"],
+        ["xpath=//td[9]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae0699e9-ba2a-4ccc-8610-d1a0d9a2c87d",
+      "comment": "",
+      "command": "click",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e22c022-07dc-4808-809f-202329d4d956",
+      "comment": "",
+      "command": "click",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8effc94f-facc-404e-9d75-979f720fbda3",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5d10af6-186f-453a-9b7a-2655c04a15d4",
+      "comment": "",
+      "command": "type",
+      "target": "id=Colecto",
+      "targets": [
+        ["id=Colecto", "id"],
+        ["name=Colecto", "name"],
+        ["css=#Colecto", "css:finder"],
+        ["xpath=//input[@id='Colecto']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "Jose Eduardo Martinez"
+    }, {
+      "id": "9e3ca863-cfff-41ba-8c67-e357f8c95d32",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//input[@value='Actualizar Registro']", "xpath:attributes"],
+        ["xpath=//form/div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2e1405bd-556f-4564-b601-7561d0ddddd4",
+    "name": "Eliminar Conteo",
+    "commands": [{
+      "id": "e385888a-9332-4e9e-94db-f598f4299807",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43e5f7a3-7c76-4a23-912a-4f573d35c662",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1195x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "25ed3a13-d742-41d5-becd-27eb68a7f1aa",
+      "comment": "",
+      "command": "click",
+      "target": "css=tbody:nth-child(4) #eliminar",
+      "targets": [
+        ["css=tbody:nth-child(6) #eliminar", "css:finder"],
+        ["xpath=(//a[@id='eliminar'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='result']/div/table/tbody[5]/tr/td[10]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '../../functions/Conteo/eliminarConteo.php?idConteo=5')]", "xpath:href"],
+        ["xpath=//tbody[5]/tr/td[10]/a", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "f25ded50-c9a3-4a46-a38e-6628e5d67eda",
+    "name": "Buscar Conteo",
+    "commands": [{
+      "id": "c4a18e73-0d22-4511-be3a-5ad4e23309ce",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "74f90b03-3049-463b-9834-dfb6c2dfa6d5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dface0e9-d634-4a87-917d-9c0578221595",
+      "comment": "",
+      "command": "click",
+      "target": "id=search_text",
+      "targets": [
+        ["id=search_text", "id"],
+        ["name=search_text", "name"],
+        ["css=#search_text", "css:finder"],
+        ["xpath=//input[@id='search_text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5bf2dde-8172-4550-b3a3-f669915b5579",
+      "comment": "",
+      "command": "type",
+      "target": "id=search_text",
+      "targets": [
+        ["id=search_text", "id"],
+        ["name=search_text", "name"],
+        ["css=#search_text", "css:finder"],
+        ["xpath=//input[@id='search_text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Ceramico"
+    }]
+  }, {
+    "id": "d71f8c00-0658-40cb-be17-0cc0b2aff1cc",
+    "name": "Login Admin - Flujo Alterno",
+    "commands": [{
+      "id": "05e2b8aa-2348-4329-8dc2-ce5c7405de3a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Login/login.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a2054d9-5d58-4ffa-b6e5-a0c0624d2d15",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1195x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "50a7dbbc-4957-426c-aead-0a1b8e85b093",
+      "comment": "",
+      "command": "click",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b461956c-48cc-498f-91f7-6e676b771bd4",
+      "comment": "",
+      "command": "click",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2714734-756d-4679-97b0-b5ae461633d3",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9bb52a7-fff5-4f0a-bf75-c143718fdb1f",
+      "comment": "",
+      "command": "type",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "dany"
+    }, {
+      "id": "874ffdb4-32b3-458c-9806-88d18ab68fcc",
+      "comment": "",
+      "command": "click",
+      "target": "id=contrasena",
+      "targets": [
+        ["id=contrasena", "id"],
+        ["name=contrasena", "name"],
+        ["css=#contrasena", "css:finder"],
+        ["xpath=//input[@id='contrasena']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c57adbb2-cf1b-4de9-823f-058b9fef76ce",
+      "comment": "",
+      "command": "type",
+      "target": "id=contrasena",
+      "targets": [
+        ["id=contrasena", "id"],
+        ["name=contrasena", "name"],
+        ["css=#contrasena", "css:finder"],
+        ["xpath=//input[@id='contrasena']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "432423423"
+    }, {
+      "id": "92be7f1d-995b-42f8-a943-549e64067ebf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.login100-form-btn",
+      "targets": [
+        ["css=.login100-form-btn", "css:finder"],
+        ["xpath=//button[@id='']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d0bc947d-ab41-465b-9ca1-1297f359e3ad",
+    "name": "Login Arqueologo - Flujo Alterno",
+    "commands": [{
+      "id": "71acd0c0-e23d-47c5-9c85-63c0b67032e0",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Sistema-Arqueologico/pages/Login/login.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "977ccc32-9f76-4d22-8d25-71f104c18430",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1195x710",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4eeea630-073b-4500-9125-c478240f6b4e",
+      "comment": "",
+      "command": "click",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9cb2b43d-7ff7-4ebe-80dc-6dbb8a414bea",
+      "comment": "",
+      "command": "click",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad0a95c3-cb1b-43e8-b038-1caa2a21ac71",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05723ca0-e7c1-4d0f-9b76-f59881083576",
+      "comment": "",
+      "command": "type",
+      "target": "id=usuario",
+      "targets": [
+        ["id=usuario", "id"],
+        ["name=usuario", "name"],
+        ["css=#usuario", "css:finder"],
+        ["xpath=//input[@id='usuario']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "prueba"
+    }, {
+      "id": "0d125736-9cf8-4f29-9c97-42465e13c4d7",
+      "comment": "",
+      "command": "click",
+      "target": "id=contrasena",
+      "targets": [
+        ["id=contrasena", "id"],
+        ["name=contrasena", "name"],
+        ["css=#contrasena", "css:finder"],
+        ["xpath=//input[@id='contrasena']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86826492-ccb0-4757-a70c-447d8177ccef",
+      "comment": "",
+      "command": "type",
+      "target": "id=contrasena",
+      "targets": [
+        ["id=contrasena", "id"],
+        ["name=contrasena", "name"],
+        ["css=#contrasena", "css:finder"],
+        ["xpath=//input[@id='contrasena']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "324423423"
+    }, {
+      "id": "483cf7e3-ff7f-44ab-bb80-5a05551f3048",
+      "comment": "",
+      "command": "click",
+      "target": "css=.login100-form-btn",
+      "targets": [
+        ["css=.login100-form-btn", "css:finder"],
+        ["xpath=//button[@id='']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "f77c1308-ecdb-4128-87c3-79ea7c421d71",
@@ -226,6 +875,6 @@
     "timeout": 300,
     "tests": ["b224ef8f-fadc-4c70-a61a-090649861034"]
   }],
-  "urls": ["http://localhost/", "http://localhost/Sistema-Arqueologico/pages/Login/login.php"],
+  "urls": ["http://localhost/", "http://localhost/Sistema-Arqueologico/pages/Login/login.php", "http://localhost/Sistema-Arqueologico/pages/Conteo/conteo-Colecciones.php"],
   "plugins": []
 }
