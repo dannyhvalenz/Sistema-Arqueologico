@@ -95,7 +95,7 @@
             <form class="form-inline" style="margin-left:30px">
             <input type="text" name="search_text" id="search_text" placeholder="Buscar conteo" class="form-control" style="width:300px; margin-right:10px"/> 
             
-            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por ID" style="border-radius:50px;">
+            <button type="button" class="btn btn-lg btn-outline-info" data-toggle="popover" title="Búsqueda" data-content="Puedes hacer busquedas por ID o Material" style="border-radius:50px;">
             <i class="fa fa-question" aria-hidden="true"></i>
             </button>  
             </form>
