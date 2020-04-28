@@ -10,6 +10,8 @@
 
 <!--STYLESHEET-->
 	<link rel="stylesheet" type="text/css" href="../other/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" type="text/css" href="../../other/css-hamburgers/hamburgers.min.css">
@@ -33,18 +35,50 @@
 			$sql = "SELECT cargo FROM usuarios WHERE usuario='$user'";
 
 			$result = mysqli_query($conexion, $sql);
-
-			if(mysqli_num_rows($result) > 0){
-				while($row = mysqli_fetch_array($result)){
-					if ($row['cargo'] == 'Adminstrador'){
-						header("Location: ../../pages/Usuario/inicioAdministrador.php");
-					} else if ($row['cargo'] == 'Arqueologo'){
-						header("Location: ../../pages/Pastas/analisis-Pastas.php");
+			if(mysqli_query($conexion, $sql)){
+				if(mysqli_num_rows($result) > 0){
+					while($row = mysqli_fetch_array($result)){
+						if ($row['cargo'] == 'Adminstrador'){
+							header("Location: ../../pages/Usuario/inicioAdministrador.php");
+						} else if ($row['cargo'] == 'Arqueologo'){
+							header("Location: ../../pages/Pastas/analisis-Pastas.php");
+						}
 					}
 				}
-			} 
+			} else {
+				//$message= "Error de conexion con la base de datos";
+            	//echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+						
 		}
     ?>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Login Fallido</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<?php $reasons = array("password" => "Usuario o contraseña incorrecta"
+								, "errorconexion" => "Error de conexion con la base de datos"); 
+							if ($_GET["loginFailed"]) 	
+								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
+						?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="limiter ">
 		<div class="container-login100 ">
 			<div class="contenedor-login shadow p-3 mb-5 bg-white rounded">
@@ -73,8 +107,6 @@
 						</span>
 					</div>
 		
-					<?php $reasons = array("password" => "Usuario o contraseña incorrecta", "blank" => "Hay campos vacios"); if ($_GET["loginFailed"]) echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; ?>
-					
 					<div class="container-login100-form-btn">
 						<button type="submit" id="" class="login100-form-btn">
 							Ingresar
@@ -92,5 +124,17 @@
 	<script src="../../other/select2/select2.min.js"></script>
 	<script src="../../other/tilt/tilt.jquery.min.js"></script>
 	<script src="../../js/main.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		var url = window.location.href;
+		if(url.indexOf('?loginFailed=true&reason=password') != -1 || url.indexOf('?loginFailed=true&reason=errorconexion') != -1) {
+    		$('#myModal').modal('show');
+		} else {
+			$('#myModal').modal('hide');
+		}
+	</script>
 </body>
 </html>
