@@ -11,16 +11,15 @@
     <!--ICONO-->
     <link rel="icon" type="image/png" href="../../icons/favicon.ico" />
 
+    <!--STYLESHEET-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.css" rel="stylesheet"/>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
-
-    <!------->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
@@ -31,6 +30,7 @@
     .col-6 {
         padding-top: 10px;
     }
+ 
     </style>
 </head>
 
@@ -45,34 +45,8 @@
             header("Location:../../pages/Login/login.php");
         }
     ?>
-   
-    <!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-		
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-                    <h4 class="modal-title">Conteo Fallido</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+   <?php if ($_GET["existe"]) echo "<script> alert('Ya existe un conteo con ese analisis de pastas, fecha, material, conteo artificial y colecto'); </script>"; ?>
 					
-				</div>
-				<div class="modal-body">
-					<p>
-                    <?php $reasons = array("existe" => "Ya existe un usuario con estos datos"
-								, "errorconexion" => "Error de conexion con la base de datos"); 
-							if ($_GET["conteoFallido"]) 	
-								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
-						?>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,17 +94,16 @@
             </form>
         </div>
     </nav>
-
-
-
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Agregar Conteo de Colección</h2>
     </div>
+    
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Conteo/crearConteo.php" method="POST"
-            enctype="multipart/form-data" autocomplete="off">
+        
+        <form novalidate method="POST"
+            enctype="multipart/form-data" onsubmit="validarExistencia()" autocomplete="off">
             <div class="container">
                 <div class="row">
                     <div class="col-6">
@@ -193,24 +166,22 @@
 
     <script src="../../js/main.js"></script>
     <!-- jQuery -->
+    <script src="../../other/jquery/jquery-3.3.1.min.js"></script>
     <script src="../../other/jquery/jquery-3.4.1.min.js"></script>
     <!-- Popper Js -->
     <script src="../../other/popper/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
     <script src="../../js/validarcampos.js"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../../js/conteoexistente.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
     $('textarea').each(function() {
@@ -249,16 +220,64 @@
         }
     });
     </script>
-    
-    <script type="text/javascript">
-		var url = window.location.href;
-		if(url.indexOf('?conteoFallido=true&reason=errorconexion') != -1 || url.indexOf('?conteoFallido=true&reason=existe') != -1) {
-            $('#myModal').modal('show');
-		} else {
-			$('#myModal').modal('hide');
-		}
-	</script>
 
+    <script>
+    console.log("Antes de la funcion");
+    function validarExistencia(){
+        var conteo_state = false;
+
+        var Material = $('#Material').val();
+        var ConteoArti = $('#ConteoArti').val();
+        var Colecto = $('#Colecto').val();
+        var Fecha = $('#Fecha').val();
+        var IdAnalisisPastas = $('#IdAnalisisPastas').val();
+
+        $.ajax({
+            url: '../../functions/Conteo/crearConteo.php', 
+            type: 'post',
+            data: {
+                'conteo_check': 1,
+                'material': Material, 
+                'conteoArti': ConteoArti,
+                'colecto': Colecto,
+                'fecha': Fecha,
+                'IdAnalisisPastas': IdAnalisisPastas,
+                'Estado': 'activo',
+            },
+            success: function(response){
+                console.log("Response");
+                alert(response);
+                if (response == 'existe'){
+                    conteo_state = false;
+                    alert("Hay un conteo existente con los siguientes datos iguales: idAnalisis, Material, Conteo Artificial, Fecha y Colecto");
+                } else if (response == 'no_existe'){
+                    conteo_state = true;
+                    //registrarConteo();
+                }
+            },
+            error: function(response){
+                console.log()
+            }
+        })    
+    }
+
+    function registrarConteo(query) {
+    $.ajax({
+        url: "crearConteo2.php",
+        method: "POST",
+        data: {
+            query: query
+        },
+        success: function(data) {
+            if(response == true){    
+                header("Location: ../../pages/Conteo/conteo-Colecciones.php");
+            } else {
+                header("Location: ../../pages/Otras/nodisponible.php");
+            }
+        }
+    });
+}
+    </script>
 </body>
 
 </html>

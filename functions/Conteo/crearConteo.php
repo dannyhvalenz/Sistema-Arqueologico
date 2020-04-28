@@ -10,22 +10,36 @@
     $ObservaConteo = $_POST['Observaciones'];
     $Estado = 'activo';
 
-    $sql = "
-        INSERT INTO conteocolecciones (Material, ConteoArti, Colecto, Fecha, Hora, ObservaConteo, IdAnalisisPastas, Estado)
-        VALUES ('$Material','$ConteoArti','$Colecto','$Fecha','$Hora','$ObservaConteo','$IdAnalisisPastas','$Estado')
-    ";   
-    
-    
-    $resultado = mysqli_query($conexion, $sql);
+    $sqlexiste = "
+        SELECT * FROM conteocolecciones WHERE Material='$Material' AND ConteoArti='$ConteoArti' 
+            AND Colecto='$Colecto' AND Fecha='$Fecha' AND IdAnalisisPastas='$IdAnalisisPastas' 
+            AND Estado='activo'
+    ";
 
-    if($resultado == true){    
-        header("Location: ../../pages/Conteo/conteo-Colecciones.php");
+    $exite = mysqli_query($conexion, $sqlexiste);
+    if (mysqli_query($conexion, $sqlexiste)){
+        if(mysqli_num_rows($existe) > 0){
+            die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=existe"));
+        } else { 
+            $sql = "
+                INSERT INTO conteocolecciones (Material, ConteoArti, Colecto, Fecha, Hora, ObservaConteo, IdAnalisisPastas, Estado)
+                VALUES ('$Material','$ConteoArti','$Colecto','$Fecha','$Hora','$ObservaConteo','$IdAnalisisPastas','$Estado')
+            ";   
+        
+            $resultado = mysqli_query($conexion, $sql);
+    
+            if($resultado == true){    
+                header("Location: ../../pages/Conteo/conteo-Colecciones.php");
+            } else {
+                die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
+            }
+        }
     } else {
-        echo "<script>console.log($sql)</script>";
-        //header("Location: ../../pages/Otras/nodisponible.php");
+        die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
     }
+    
 
     mysqli_free_result($resultado);
+    mysqli_free_result($existe);
     mysqli_close($conexion);
-
 ?>
