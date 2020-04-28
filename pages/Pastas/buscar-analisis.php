@@ -53,7 +53,7 @@
     <tbody>
     <tr>
         <td>'.$row["IdAnalisisPastas"].'</td>
-        <td>'.$row["Fecha"].'</td>
+        <td>'.date("d-m-Y", strtotime($row['Fecha'])).'</td>
         <td>'.$row["Cuadrante"].'</td>
         <td>'.$row["Sitio"].'</td>
         <td>'.$row["Patron"].'</td>
