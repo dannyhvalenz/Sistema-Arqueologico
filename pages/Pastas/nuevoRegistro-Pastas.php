@@ -134,12 +134,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
-
-        
-
-
-        <form class="form-horizontal validate-form" action="../../functions/Analisis/creaAnalisis.php" method="GET" enctype="multipart/form-data"
+        <form class="form-horizontal validate-form" action="../../functions/Pastas/creaAnalisis.php" method="POST" enctype="multipart/form-data"
             autocomplete="off">
             <div>
                 <div class="row align-items-start">
