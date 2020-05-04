@@ -11,11 +11,11 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../..//css/main.css">
 
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 
 <body>
@@ -28,7 +28,6 @@
              header("Location:../../pages/Login/login.php");
          }
     ?>
-
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -37,14 +36,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="../Usuario/inicioAdministrador.php">Usuarios</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Análisis de Pastas</a>
+                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análisis de pastas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>
+                    <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de colecciones</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -55,9 +54,6 @@
                         
                             require ('../../functions/conexion/conexion.php'); 
                             $user = $_SESSION['usuario'];
-                            
-                            echo "<script>console.log('Sesion de: " . $user . "' );</script>";
-
                             $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
@@ -103,14 +99,13 @@
     <!--TABLA-->
     <div class="table" id="result" style="min-height:65vh"></div>
     
-    <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 
     <!--SCRIPTS-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
     <script>
     $(document).ready(function() {
 
@@ -132,7 +127,9 @@
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } 
+            } else {
+                load_data();
+            }
         });
     });
     </script>

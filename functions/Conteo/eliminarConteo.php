@@ -3,7 +3,8 @@
 
     $id = $_GET["idConteo"];
 
-    $sql = "DELETE FROM conteocolecciones WHERE idConteo = '$id'";
+    //$sql = "DELETE FROM conteocolecciones WHERE idConteo = '$id'";
+    $sql = "UPDATE conteocolecciones SET Estado='inactivo' WHERE idConteo = '$id'";
 
     $resultado=mysqli_query($conexion, $sql);
 

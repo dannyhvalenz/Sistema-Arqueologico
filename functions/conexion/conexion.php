@@ -2,7 +2,7 @@
     // Crear conexion
     $host = 'localhost';
     $user = 'root';
-    $password = '12345';
+    $password = '';
     $bd = 'abdarqueologia';
 
     $conexion = mysqli_connect($host, $user, $password, $bd);

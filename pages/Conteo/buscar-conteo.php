@@ -9,10 +9,10 @@
         $query = "
         SELECT * FROM conteocolecciones 
         WHERE IdConteo LIKE '%".$search."%'
-        OR Material LIKE '%".$search."%'
+        OR Material LIKE '%".$search."%' AND Estado='activo'
         ";
     }else{
-        $query = "SELECT * FROM conteocolecciones ORDER BY IdConteo";
+        $query = "SELECT * FROM conteocolecciones WHERE Estado='activo' ORDER BY IdConteo";
     }
 
     $result = mysqli_query($conexion, $query);

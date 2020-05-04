@@ -11,11 +11,10 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
-
 </head>
 
 <body>
@@ -37,10 +36,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" href="#">Usuarios</a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análisis de Pastas</a>
                 </li>
                 <li class="nav-item">
@@ -55,9 +54,6 @@
                         
                             require ('../../functions/conexion/conexion.php'); 
                             $user = $_SESSION['usuario'];
-                            
-                            echo "<script>console.log('Sesion de: " . $user . "' );</script>";
-
                             $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
@@ -104,7 +100,7 @@
 			</div>
 		</div>
 	</div>
-
+    
     <!--MODAL PARA ELIMINAR-->
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -115,7 +111,7 @@
                 </div>
             
                 <div class="modal-body">
-                    <p>Estas apunto de eliminar un usuario y esta operacion ya no se pere revertir</p>
+                    <p>Estas apunto de eliminar un usuario y esta operacion ya no se podra revertir</p>
                     <br>
                     <p>¿Deseas proceder con la eliminación?</p>
                 </div>
@@ -136,6 +132,7 @@
     <!--DIV ACCIONES-->
     <div class="" style="margin:15px;margin-left:30px">
         <div class="row">
+
             <!--BOTON AGREGAR USUARIO-->
             <a href="nuevoRegistro-Usuarios.php" class="btn btn-success btn-lg">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -151,11 +148,11 @@
             </form>
         </div>
     </div>
-
+    
     <!--TABLA-->
     <div class="table" id="result" style="min-height:65vh"></div>
     
-    <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 
@@ -184,7 +181,9 @@
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } 
+            } else {
+                load_data();
+            }
         });
     });
     </script>
@@ -194,8 +193,7 @@
         })
 
     </script>
-
-    <!--SCRIPT MENSAJE CONFIRMACION AL ELIMINAR-->
+	 <!--SCRIPT MENSAJE CONFIRMACION AL ELIMINAR-->
     <script>
         $('#confirm-delete').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
@@ -203,16 +201,17 @@
             $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
         });
     </script>
-
-    <!--SCRIPT PARA QUE SE MUESTRE EL MENSAJE DE ERROR EN EL MODAL-->
+    
+    <!--SCRIPT PARA QUE SE MUESTRA EL MENSAJE DE ERROR EN EL MODAL-->
     <script type="text/javascript">
 		var url = window.location.href;
 		if(url.indexOf('?usuarioFallido=true&reason=errorconexion') != -1) {
-            $('#myModal').modal('show');
+		   	$('#myModal').modal('show');
 		} else {
 			$('#myModal').modal('hide');
 		}
 	</script>
+    
 </body>
 
 </html>
