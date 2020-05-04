@@ -11,10 +11,10 @@
 
     <!--STYLESHEET-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../..//css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <style>
         @media screen and (max-width: 320px) {
              table {
@@ -28,17 +28,15 @@
 <body>
     <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
     <?php
-        
-        session_start();
+         session_start();
 
          if(isset($_SESSION['usuario'])){                   
          }else{
              header("Location:../../pages/Login/login.php");
          }
     ?>
-
     <!--BARRA DE NAVEGACION-->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" style="background: #36622C">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,11 +46,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="analisis-Pastas.php">Análisis de pastas <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../Pastas/analisis-Pastas.php">Análsis de pastas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones</a>
+                    <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -63,9 +61,6 @@
                         
                             require ('../../functions/conexion/conexion.php'); 
                             $user = $_SESSION['usuario'];
-                            
-                            echo "<script>console.log('Sesion de: " . $user . "' );</script>";
-
                             $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
@@ -113,11 +108,11 @@
             </form>
         </div>
     </div>
-
+    
     <!--TABLA-->
     <div class="table" id="result" style="min-height:65vh"></div>
     
-    <footer class="card-footer text-muted" style="margin-top:20px;position:relative;bottom:0">
+    <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
 
@@ -146,7 +141,9 @@
             var search = $(this).val();
             if (search != '') {
                 load_data(search);
-            } 
+            } else {
+                load_data();
+            }
         });
     });
     </script>
