@@ -68,7 +68,7 @@
                             <td>'.$row["Peso"].'</td>
                             <td>'.$row["TotalFragmentos"].'</td>
                             <td>'.$row["Observaciones"].'</td>
-                            <td><a href="../../functions/Pastas/editarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
+                            <td><a href="../../pages/Pastas/actualizar-pastas.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
                                 class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
                             </td>
                             <td><a href="#" data-href="../../functions/Pastas/eliminarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
