@@ -32,11 +32,11 @@
             if($resultado == true){    
                 header("Location: ../../pages/Conteo/conteo-Colecciones.php");
             } else {
-                die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion2"));
+                die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
             }
         }
     } else {
-        die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion1"));
+        die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
     }
     
 
