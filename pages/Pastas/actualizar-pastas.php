@@ -22,7 +22,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../../css/hierarchy-select.min.css">
-
+	<!-- Dropzone -->
+    <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="../../other/dropzone/dropzone.css">
+    
     <style>
 		#carouselExampleControls{
 			height: 300px !important;
@@ -139,72 +144,15 @@
    	<div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form action="upload.php" class="dropzone files-container form-horizontal" >
+        <form action="upload.php" class="dropzone files-container form-horizontal" enctype="multipart/form-data" >
                         <div class="fallback" >
                             <input name="file" type="file" multiple accept=".jpg, .png"/>
                         </div>
         </form>
-        <!-- carrusel de las imagenes -->
-        <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-			<div id="imagenesCarusel" class="carousel-inner">
-				<div class="carousel-item active">
-					<img class="d-block w-100" id="imguno" src="Complementos/....gif">
-				</div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div> -->
-       
-       <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    
-                </div>
-                <div class="item">
-                <img src="../Pastas/Complementos/6.-%20Los%20vengadores.jpg" alt="Los Angeles">
-                </div>
-                <div class="item">
-                <img src="../Pastas/Complementos/DARLING%20IN%20THE%20FRANXX%2012.jpg" alt="Chicago">
-                </div>
-
-                <div class="item">
-                <img src="../../img/slide-3.jpg" alt="New York">
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        
        
         <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Pastas/actualizarAnalisis.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
-            <div action="" class="dropzone files-container form-horizontal" >
-                 <div class="fallback" >
-                     <input name="file[]" type="file" multiple accept=".jpg, .png"/>
-                 </div>
-        	</div>
             <div class="container">
                 <div class="row align-items-start">
                     <div class="col-4">
