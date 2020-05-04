@@ -60,7 +60,7 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="../Pastas/analisis-Pastas.php">Análsis de pastas</a>
+                    <a class="nav-link active" href="../Pastas/analisis-Pastas.php">Análisis de pastas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones</a>
