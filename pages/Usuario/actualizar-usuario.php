@@ -1,12 +1,3 @@
-<?php
-   require ('../../functions/conexion/conexion.php');
-   $idUsuario = $_GET['idUsuario'];
-   
-   $sql = "SELECT * FROM usuarios WHERE idUsuario='$idUsuario'";
-   
-   $resultado = mysqli_query($conexion, $sql);
-   $row = mysqli_fetch_array($resultado)  
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -124,6 +115,16 @@
 			</div>
 		</div>
 	</div>
+
+    <?php
+        require ('../../functions/conexion/conexion.php');
+        $idUsuario = $_GET['idUsuario'];
+        
+        $sql = "SELECT * FROM usuarios WHERE idUsuario='$idUsuario'";
+        
+        $resultado = mysqli_query($conexion, $sql);
+        $row = mysqli_fetch_array($resultado)  
+    ?>
 
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Editar Usuario</h2>
