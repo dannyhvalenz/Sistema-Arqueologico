@@ -16,8 +16,9 @@
             AND Estado='activo'
     ";
 
-    $exite = mysqli_query($conexion, $sqlexiste);
-    if (mysqli_query($conexion, $sqlexiste)){
+    $existe = mysqli_query($conexion, $sqlexiste);
+
+    if ($existe == true){
         if(mysqli_num_rows($existe) > 0){
             die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=existe"));
         } else { 
@@ -31,11 +32,11 @@
             if($resultado == true){    
                 header("Location: ../../pages/Conteo/conteo-Colecciones.php");
             } else {
-                die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
+                die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion2"));
             }
         }
     } else {
-        die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion"));
+        die(header("Location:../../pages/Conteo/nuevoRegistro-Conteo.php?conteoFallido=true&reason=errorconexion1"));
     }
     
 
