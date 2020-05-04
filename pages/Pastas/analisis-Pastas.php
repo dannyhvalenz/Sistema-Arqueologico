@@ -49,7 +49,7 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="analisis-Pastas.php">Análsis de pastas <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="analisis-Pastas.php">Análisis de pastas <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../Conteo/conteo-Colecciones.php">Conteo de colecciones</a>
