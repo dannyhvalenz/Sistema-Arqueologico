@@ -31,7 +31,7 @@
     $resultado=mysqli_query($conexion, $sql);
 
     if($resultado==true){    
-        header("Location: analisis-Pastas.php");
+        header("Location: ../../pages/Pastas/analisis-Pastas.php");
     }else{
         header("location: ../../pages/presentacion/nodisponible.html");
     }

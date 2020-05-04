@@ -86,7 +86,7 @@
                     <a class="nav-link" href="../Pastas/analisis-Pastas.php">Análsis de pastas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="conteo-Colecciones.php">Conteo de colecciones</a>
+                    <a class="nav-link active" href="conteo-Colecciones.php">Conteo de colecciones</a>
                 </li>
             </ul>
 
