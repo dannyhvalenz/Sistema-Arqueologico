@@ -19,32 +19,31 @@ else
     
 }
 $result = mysqli_query($conexion, $query);
-if(mysqli_num_rows($result) > 0)
-{
-  if (isset($_POST["idAnalisisPastas"])){
-    while($row = mysqli_fetch_array($result))
-    {
-      if ($row["IdAnalisisPastas"] == $_POST["idAnalisisPastas"]){
-        $output .= '
-          <option class="dropdown-item" value='.$row["IdAnalisisPastas"].' selected>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
-      } else {
-        $output .= '
-          <option class="dropdown-item" value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
-      }
-    }
-  } else {
-    while($row = mysqli_fetch_array($result))
-    {
-     $output .= '
-     <option class="dropdown-item" value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
-    }
-  }
- 
- echo $output;
+if ($result == true){
+	if(mysqli_num_rows($result) > 0){
+		if (isset($_POST["idAnalisisPastas"])){
+			while($row = mysqli_fetch_array($result)){
+				  if ($row["IdAnalisisPastas"] == $_POST["idAnalisisPastas"]){
+					$output .= '
+					  <option class="dropdown-item" value='.$row["IdAnalisisPastas"].' selected>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
+				  } else {
+					$output .= '
+					  <option class="dropdown-item" value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
+				  }
+			}
+		  } else {
+			while($row = mysqli_fetch_array($result)){
+				$output .= '
+				<option class="dropdown-item" value='.$row["IdAnalisisPastas"].'>'.$row["IdAnalisisPastas"].".- ".$row["Fecha"].'</option>';
+			}
+		  }
+		 echo $output;
+	} else {
+	 echo 'No hay resultados para esa busqueda';
+	}
+} else {
+	echo 'Error de conexion con la base de datos';
 }
-else
-{
- echo 'No hay resultados para esa busqueda';
-}
+
 
 ?>

@@ -6,13 +6,13 @@
 
     $sql = "DELETE FROM usuarios WHERE idUsuario = '$id'";
     
-    $resultado=mysqli_query($conexion, $sql);
+    $resultado = mysqli_query($conexion, $sql);
 
-    if($resultado==true){   
+    if($resultado == true){   
         
         header("Location: ../../pages/Usuario/inicioAdministrador.php");    
     }else{
-        header("location: ../../pages/presentacion/nodisponible.html");
+        die(header("Location: ../../pages/Usuario/inicioAdministrador.php?usuarioFallido=true&reason=errorconexion"));
     }
 
     mysqli_free_result($resultado);

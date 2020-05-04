@@ -77,6 +77,53 @@
         </div>
     </nav>
 
+    <!-- MODAL PARA MOSTRAR MENSAJES DE ERROR -->
+    <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+                    <h4 class="modal-title">Conteo Fallido</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+                    <?php $reasons = array("errorconexion" => "Error de conexion con la base de datos"); 
+							if ($_GET["conteoFallido"]) 	
+								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
+						?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!--MODAL PARA ELIMINAR-->
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Eliminar conteo</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>Estas apunto de eliminar un conteo, si llegaras a necesitarlo de nuevo pideselo al administrador</p>
+                    <br>
+                    <p>¿Deseas proceder con la eliminación?</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-danger btn-ok">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--TITULO-->
     <div class="container-fluid text-center">
         <h1><b>Conteo de Colecciones</b></h1>
@@ -140,12 +187,31 @@
         });
     });
     </script>
+
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover()
         })
 
     </script>
+
+    <script>
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            
+            $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+        });
+    </script>
+
+    <!--SCRIPT PARA QUE SE MUESTRE EL MENSAJE DE ERROR EN EL MODAL-->
+    <script type="text/javascript">
+		var url = window.location.href;
+		if(url.indexOf('?conteoFallido=true&reason=errorconexion') != -1) {
+            $('#myModal').modal('show');
+		} else {
+			$('#myModal').modal('hide');
+		}
+	</script>
 </body>
 
 </html>

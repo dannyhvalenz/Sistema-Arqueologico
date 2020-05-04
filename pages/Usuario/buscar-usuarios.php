@@ -22,40 +22,41 @@
     }
 
     $result = mysqli_query($conexion, $query);
-
-    if(mysqli_num_rows($result) > 0){
-        $output .= '
-        
-        <table class="table table-bordered">
-            <thead>
-                <tr style="padding: 5px, 10px">
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Usuario</th>
-                    <th>Cargo</th>
-                </tr>
-            </thead>
-        ';
-        while($row = mysqli_fetch_array($result)){
+    if ($result ==  true){
+        if(mysqli_num_rows($result) > 0){
             $output .= '
-            <tbody>
-            <tr>
-                <td>'.$row["nombre"].'</td>
-                <td>'.$row["apellido"].'</td>
-                <td>'.$row["usuario"].'</td>
-                <td>'.$row["cargo"].'</td>
-                
-                <td><a href="../../pages/Usuario/actualizar-usuario.php?idUsuario='.$row["idUsuario"].'"
-                    class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
-                </td>
-                <td><a href="../../functions/Admin/eliminarUsuario.php?idUsuario='.$row["idUsuario"].'"
-                    class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
-                </tr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr style="padding: 5px, 10px">
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Usuario</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
             ';
+            while($row = mysqli_fetch_array($result)){
+                $output .= '
+                <tbody>
+                    <tr>
+                        <td>'.$row["nombre"].'</td>
+                        <td>'.$row["apellido"].'</td>
+                        <td>'.$row["usuario"].'</td>
+                        <td>'.$row["cargo"].'</td>
+                        
+                        <td><a href="../../pages/Usuario/actualizar-usuario.php?idUsuario='.$row["idUsuario"].'"
+                            class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
+                        </td>
+                        <td><a href="#" data-href="../../functions/Admin/eliminarUsuario.php?idUsuario='.$row["idUsuario"].'"
+                            data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
+                    </tr>
+                ';
+            }
+             echo $output;
+        } else {
+            echo 'No hay resultados para esa busqueda';
         }
-         echo $output;
     } else {
-        echo 'No hay resultados para esa busqueda';
+        echo 'Error de conexion con la base de datos';
     }
-
 ?>

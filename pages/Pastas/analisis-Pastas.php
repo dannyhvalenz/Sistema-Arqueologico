@@ -35,6 +35,7 @@
              header("Location:../../pages/Login/login.php");
          }
     ?>
+
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -83,6 +84,29 @@
             </form>
         </div>
     </nav>
+
+    <!--MODAL PARA ELIMINAR-->
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Eliminar analisis de pastas</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>Estas apunto de eliminar un analisis de pastas, si llegaras a necesitarlo de nuevo pideselo al administrador</p>
+                    <br>
+                    <p>¿Deseas proceder con la eliminación?</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-danger btn-ok">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--TITULO-->
     <div class="container-fluid text-center">
@@ -152,6 +176,14 @@
             $('[data-toggle="popover"]').popover()
         })
 
+    </script>
+
+    <script>
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            
+            $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+        });
     </script>
 </body>
 

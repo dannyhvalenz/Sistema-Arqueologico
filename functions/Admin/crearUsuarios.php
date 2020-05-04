@@ -7,24 +7,32 @@
     $contrasena = $_POST['contrasena'];
     $cargo = $_POST['cargo'];
 
-    $buscarUsuario = "SELECT * FROM usuarios WHERE nombre = '$nombre' AND apellido = '$apellido' AND usuario = '$usuario' AND cargo = '$cargo'";
-    $consulta = $conexion->query($buscarUsuario);
-    $count = mysqli_num_rows($consulta);
-    if ($count == 4) {
-        $var = "El Usuario ya existe";
-        echo "<script> alert('".$var."'); </script>";
-    }else{
+    $sqlexiste = "
+        SELECT * FROM usuarios WHERE usuario = '$usuario'
+    ";
+    $existe = mysqli_query($conexion, $sqlexiste);
 
-        $query = "INSERT INTO usuarios (nombre, apellido, contrasena, cargo, usuario) VALUES ('$nombre', '$apellido', '$contrasena', '$cargo', '$usuario')";
+    if ($existe == true){
+        if (mysqli_num_rows($existe) > 0){
+            die(header("Location:../../pages/Usuario/nuevoRegistro-Usuarios.php?usuarioFallido=true&reason=existe"));
+        } else {
+            $query = "
+                INSERT INTO usuarios (nombre, apellido, contrasena, cargo, usuario) 
+                VALUES ('$nombre', '$apellido', '$contrasena', '$cargo', '$usuario')
+            ";
 
-        if ($conexion->query($query) === TRUE) {
-            echo "<br />"."<h2>"."El Usuario fue Creado Exitosamente"."</h2>";
-         }
-         else {
-            echo "Error al crear Usuario.".$buscarUsuario."<br>".$conexion->error;
-         }
-         header("Location: ../../pages/Usuario/inicioAdministrador.php");
-         
-     }
+            $crearUsuario = mysqli_query($conexion, $query);
+            if ($crearUsuario == true) {
+                header("Location: ../../pages/Usuario/inicioAdministrador.php");
+            } else {
+                die(header("Location:../../pages/Usuario/nuevoRegistro-Usuarios.php?usuarioFallido=true&reason=errorconexion"));
+            }
+        }
+    } else {
+        die(header("Location:../../pages/Usuario/nuevoRegistro-Usuarios.php?usuarioFallido=true&reason=errorconexion"));
+    }
+    
+    mysqli_free_result($query);
+    mysqli_free_result($existe);
     mysqli_close($conexion);
 ?>
