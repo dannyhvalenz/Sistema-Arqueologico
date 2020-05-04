@@ -15,8 +15,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-
     <!------->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
@@ -59,7 +57,7 @@
 				</div>
 				<div class="modal-body">
 					<p>
-                    <?php $reasons = array("existe" => "Ya existe un usuario con estos datos"
+                    <?php $reasons = array("existe" => "Ya existe un conteo con estos datos"
 								, "errorconexion" => "Error de conexion con la base de datos"); 
 							if ($_GET["conteoFallido"]) 	
 								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
@@ -208,8 +206,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
@@ -230,6 +228,7 @@
     });
     </script>
 
+    <!--SCRIPT PARA CARGAR LOS ANALISIS DE PASTAS A LOS QUE SE PUEDE RELACIONAR EL CONTEO-->
     <script>
     $(document).ready(function() {
 
@@ -250,6 +249,7 @@
     });
     </script>
     
+    <!--SCRIPT PARA QUE SE MUESTRE EL MENSAJE DE ERROR EN EL MODAL-->
     <script type="text/javascript">
 		var url = window.location.href;
 		if(url.indexOf('?conteoFallido=true&reason=errorconexion') != -1 || url.indexOf('?conteoFallido=true&reason=existe') != -1) {

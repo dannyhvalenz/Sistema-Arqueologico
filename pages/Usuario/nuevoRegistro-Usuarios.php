@@ -35,7 +35,7 @@
 
         if(isset($_SESSION['usuario'])){                   
         }else{
-            //header("Location:../../pages/Login/login.php");
+            header("Location:../../pages/Login/login.php");
         }
     ?>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
@@ -48,6 +48,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../Admin/inicioAdministrador.php">Usuarios</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análisis de Pastas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Conteo/conteo-Colecciones-Admin.php">Conteo de Colecciones</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <li class="nav-item">
@@ -57,13 +63,16 @@
                         
                             require ('../../functions/conexion/conexion.php'); 
                             $user = $_SESSION['usuario'];
-                            $sql = "SELECT * FROM usuarios WHERE Nombre='$user'";
+                            
+                            echo "<script>console.log('Sesion de: " . $user . "' );</script>";
+
+                            $sql = "SELECT * FROM usuarios WHERE usuario='$user'";
 
                             $result = mysqli_query($conexion, $sql);
 
                             if(mysqli_num_rows($result) > 0){
                                 while($row = mysqli_fetch_array($result)){
-                                    echo $row['Nombre'] . " " .$row['Apellido'];
+                                    echo $row['nombre'] . " " .$row['apellido'];
                                 }
                             } else {
                                 echo "Nombre del Usuario";
@@ -79,6 +88,36 @@
             </form>
         </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+                    <h4 class="modal-title">Usuario Fallido</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					
+				</div>
+				<div class="modal-body">
+					<p>
+                    <?php $reasons = array("existe" => "Ya hay un registro con este nombre de usuario"
+								, "errorconexion" => "Error de conexion con la base de datos"); 
+							if ($_GET["usuarioFallido"]) 	
+								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
+						?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
     <div class="container-fluid text-center" style="margin-bottom:20px">
         <h2>Agregar Usuarios</h2>
     </div>
@@ -146,24 +185,39 @@
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
+    
+    <!--SCRIPT PARA VALIDAR LOS CAMPOS VACIOS-->
     <script src="../../js/validarcampos.js"></script>
-    
-    <script type="text/javascript">//<![CDATA[
 
-    window.onload=function(){
-    
-    /**
-    * @author Abdo-Hamoud <abdo.host@gmail.com>
-    * https://github.com/Abdo-Hamoud/bootstrap-show-password
-    * version: 1.0
-    */
-
-    !function(a){a(function(){a('[data-toggle="password"]').each(function(){var b = a(this); var c = a(this).parent().find(".input-group-text"); c.css("cursor", "pointer").addClass("input-password-hide"); c.on("click", function(){if (c.hasClass("input-password-hide")){c.removeClass("input-password-hide").addClass("input-password-show"); c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); b.attr("type", "text")} else{c.removeClass("input-password-show").addClass("input-password-hide"); c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); b.attr("type", "password")}})})})}(window.jQuery);
-
-
-    }
-
-    //]]>
+    <!--SCRIPT PARA VER LA CONTRASEÑA-->
+    <script type="text/javascript">
+        window.onload = function(){
+            /**
+            * @author Abdo-Hamoud <abdo.host@gmail.com>
+            * https://github.com/Abdo-Hamoud/bootstrap-show-password
+            * version: 1.0
+            */
+            !function(a){
+                a(function(){
+                    a('[data-toggle="password"]').each(function(){
+                        var b = a(this); 
+                        var c = a(this).parent().find(".input-group-text"); 
+                        c.css("cursor", "pointer").addClass("input-password-hide"); 
+                        c.on("click", function(){
+                            if (c.hasClass("input-password-hide")){
+                                c.removeClass("input-password-hide").addClass("input-password-show"); 
+                                c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); 
+                                b.attr("type", "text")
+                            } else{
+                                c.removeClass("input-password-show").addClass("input-password-hide"); 
+                                c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); 
+                                b.attr("type", "password")
+                            }
+                        })
+                    })
+                })
+            }(window.jQuery);
+        }
     </script>
 
 
@@ -175,7 +229,18 @@
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
-    </script>    
-</body>
+    </script> 
 
+    <!--SCRIPTS NECESARIOS PARA LOS MENSAJES EN EL MODAL-->
+
+    <script type="text/javascript">
+		var url = window.location.href;
+		if(url.indexOf('?usuarioFallido=true&reason=errorconexion') != -1 || url.indexOf('?usuarioFallido=true&reason=existe') != -1) {
+            $('#myModal').modal('show');
+		} else {
+			$('#myModal').modal('hide');
+		}
+	</script>   
+
+</body>
 </html>
