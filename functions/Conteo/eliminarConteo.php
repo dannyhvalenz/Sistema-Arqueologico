@@ -11,7 +11,7 @@
         
         header("Location: ../../pages/Conteo/conteo-Colecciones.php");    
     }else{
-        header("location: ../../pages/Otras/nodisponible.html");
+        die(header("Location: ../../pages/Conteo/conteo-Colecciones.php?conteoFallido=true&reason=errorconexion"));
     }
 
     mysqli_free_result($resultado);

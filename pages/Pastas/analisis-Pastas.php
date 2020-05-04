@@ -37,6 +37,7 @@
          }
     ?>
 
+    
     <!--BARRA DE NAVEGACION-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
