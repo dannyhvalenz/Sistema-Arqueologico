@@ -71,8 +71,8 @@
                             <td><a href="../../functions/Pastas/editarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
                                 class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
                             </td>
-                            <td><a href="../../functions/Pastas/eliminarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
-                                class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
+                            <td><a href="#" data-href="../../functions/Pastas/eliminarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
+                                data-toggle="modal" data-target="#confirm-delete"class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
                         </tr>
                 ';
             }

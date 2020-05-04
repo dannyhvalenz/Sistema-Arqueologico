@@ -49,9 +49,12 @@
                     <td><a href="actualizar-conteo.php?idConteo='.$row["idConteo"].'"
                         class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
                     </td>
-                    <td><a href="../../functions/Conteo/eliminarConteo.php?idConteo='.$row["idConteo"].'"
-                        class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
-                    </tr>
+                    <td><a href="#" data-href="../../functions/Conteo/eliminarConteo.php?idConteo='.$row["idConteo"].'"
+                        data-toggle="modal" data-target="#confirm-delete" id='.$row["idConteo"].' class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar">
+
+                        </a>
+                    </td>
+                </tr>
                 ';
             }
             echo $output;
@@ -61,6 +64,4 @@
     } else {
         echo 'Error de conexion con la base de datos';
     }
-    
-
 ?>

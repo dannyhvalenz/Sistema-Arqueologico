@@ -47,8 +47,8 @@
                         <td><a href="../../pages/Usuario/actualizar-usuario.php?idUsuario='.$row["idUsuario"].'"
                             class="btn btn-warning glyphicon glyphicon-pencil" data-toggle="modal" id="editar"></a>
                         </td>
-                        <td><a href="../../functions/Admin/eliminarUsuario.php?idUsuario='.$row["idUsuario"].'"
-                            class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
+                        <td><a href="#" data-href="../../functions/Admin/eliminarUsuario.php?idUsuario='.$row["idUsuario"].'"
+                            data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
                     </tr>
                 ';
             }
