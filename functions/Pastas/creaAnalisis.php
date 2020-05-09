@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require ('../conexion/conexion.php');
 
     $NumAnalisisPasta = '100';
@@ -19,7 +21,7 @@
     $TotalFragmentos = $_POST['TotalFragmentos'];
     $Observaciones = $_POST['Observaciones'];
     $Estado = 'activo';
-    
+    $prueba = $_POST['text'];
     
     $sql = "INSERT INTO analisispastas (NumAnalisisPasta, Fecha, Cuadrante, Sitio, Patron, 
                 Utme, Utmn, Latitud, Analizo, Bolsa, Tipo, Tratamiento, Modificacion, FormasTratamientos, 
@@ -27,44 +29,33 @@
                 '$Sitio', '$Patron', '$Utme', '$Utmn', '$Latitud', '$Analizo', '$Bolsa', '$Tipo',
                 '$Tratamiento','$Modificacion','$FormasTratamientos','$Peso','$TotalFragmentos', 
                 '$Observaciones', '$Estado')";
-    //$resultado = $mysqli->query($sql);
-	
-//mysqli_insert_id($conn);
-    //$ruta = 'files/'.$id_insert.'/';
-    
-	//$id_insert = mysqli_insert_id($conexion);
-    $resultado=mysqli_query($conexion, $sql);
-	
-	//$storeFolder = 'uploads/'.$id_insert.'/';   //carpeta donde se alojara 
-	mkdir($storeFolder);//crear el folder
-    
-	//agregar imagenes
-	$ds = DIRECTORY_SEPARATOR;  //variable para el separador de directorio
+
+	$resultado=mysqli_query($conexion, $sql);
  
-	$storeFolder = 'imagenes';   //Declarar una variable para la carpeta de destino. 
 
-	if (!empty($_FILES)) {
+    if($resultado==true){   
+        $id_insert = mysqli_insert_id($conexion);
 
-		$tempFile = $_FILES['file']['tmp_name'];//Si el archivo se envía a la página, almacena el objeto del archivo en una variable temporal.             
-
-		$targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //Crea la ruta absoluta de la carpeta de destino.
-
-		$targetFile =  $targetPath. $_FILES['file']['name'];  //Crea la ruta absoluta del destino del archivo cargado.
-		move_uploaded_file($tempFile,$targetFile); //Mover el archivo cargado al destino.
-
-	}
-
-    if($resultado==true){    
+        $uploadDir = 'imagenes/'.$id_insert;
+        //$uploadDir = 'imagenes/500';
         
-        header("Location: ../../pages/Pastas/analisis-Pastas.php");
+        mkdir($uploadDir, 0777);
+
+        if (!empty($_FILES)) {
+            for ($i=0; $i < count($_FILES["archivo"]["name"]); $i++) { 
+                $filename = $uploadDir.'/'.$_FILES['archivo']['name'][$i];
+                $tmpFile = $_FILES['archivo']['tmp_name'][$i];
+                move_uploaded_file($tmpFile,$filename);
+            }
+            echo("1");
+        }else{
+            echo("0");
+        }
+        //header("Location: ../../pages/Pastas/analisis-Pastas.php");
         
     }else{
-        header("location: ../../pages/presentacion/nodisponible.html");
+        //header("location: ../../pages/presentacion/nodisponible.html");
     }
-
-    mysqli_free_result($resultado);
+    //mysqli_free_result($resultado);
     mysqli_close($conexion);
-
- 
-
 ?>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,12 +23,15 @@
 
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../../css/hierarchy-select.min.css">
-    <!-- Dropzone -->
-    <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    <link rel="stylesheet" href="../../other/dropzone/dropzone.css">
 
+    <link rel="stylesheet" type="text/css" href="drop.css">
+    <!-- Dropzone -->
+    <!--<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>-->
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="../../other/dropzone/dropzone.css">
+    <script src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
     <style>
     .col-6 {
         padding-top: 10px;
@@ -104,16 +106,11 @@
     </div>
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
-        <p>Debe de ingresar los datos correctamente:</p>
-        <form action="upload.php" class="dropzone files-container form-horizontal" enctype="multipart/form-data" >
-                        <div class="fallback" >
-                            <input name="file" type="file" multiple accept=".jpg, .png"/>
-                        </div>
-        </form>
+        <p>Debe de ingresar los datos correctamente:</p><br>
         
-        <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Pastas/creaAnalisis.php" method="POST"
+        
+        <form class="form-horizontal validate-form needs-validation" id="formDatos" novalidate method="POST"
             enctype="multipart/form-data" autocomplete="off">
-           
             <div class="container">
                 <div class="row">
                     <div class="col-4">
@@ -165,7 +162,7 @@
 
                     <div class="col-4 validate-input" data-validate="Ingresa la bolsa">
                         <label>Bolsa</label>
-                        <input class="form-control" pattern="[A-Za-z0-9]+" type="text" stepss="any" max="10" min="0"
+                        <input class="form-control" pattern="[A-Za-z0-9\.]+" type="text" stepss="any" max="10" min="0"
                             maxlength="10" minlength="0" placeholder="Bolsa" name="Bolsa" id="Bolsa" required>
                     </div>
                     <div class="col-4">
@@ -208,15 +205,22 @@
                         <textarea class="form-control" rows="1" id="comment" max="250" min="0" maxlength="250" minlength="0"
                             placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required></textarea>
                     </div>
+
                 </div>
             </div>
-            <div class="col d-flex flex-row-reverse" style="margin-top:20px">
-                <input type="submit" class="btn btn-success" value="Guardar Registro">
-                <a href="../../pages/Pastas/analisis-Pastas.php" type="submit" name="registrar" class="btn btn-danger" style="margin-right:20px">Cancelar
+            
+        </form><br>
+        <div id="dropzone">
+          <div>Arrastra las imagenes aquí</div>
+          <input type="file" id="campofichero" multiple accept="image/png, image/jpg" />
+          
+        </div>
+        <div id="lista_imagenes"></div>
+        <div class="col d-flex flex-row-reverse" style="margin-top:20px">
+            <input type="submit" class="btn btn-success" value="Guardar Registro" form="formDatos">
+            <a href="../../pages/Pastas/analisis-Pastas.php" type="submit" name="registrar" class="btn btn-danger" style="margin-right:20px">Cancelar
                     Registro</a>
-            </div>
-        </form>
-
+        </div>
     </div>
 
     <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
@@ -225,20 +229,19 @@
 
     <script src="../../js/main.js"></script>
     <!-- jQuery -->
-    <script src="../../other/jquery/jquery-3.4.1.min.js"></script>
+    <!--<script src="../../other/jquery/jquery-3.4.1.min.js"></script>-->
     <!-- Popper Js -->
     <script src="../../other/popper/popper.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="../../other/bootstrap/js/bootstrap-4.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
     <script src="../../js/validarcampos.js"></script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -251,6 +254,124 @@
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });
+
+    var arch=[];
+
+    $(function(){
+            $("#formDatos").on("submit", function(e){
+                e.preventDefault();
+                var f = $(this);
+                var formDat = new FormData(document.getElementById("formDatos"));
+                //var archivos = $('#campofichero')[0].files;
+
+                for(var i=0; i<arch.length; i++){
+                    formDat.append('archivo[]', arch[i]);
+                }
+
+                formDat.append('text', $('#textinput').prop('value'));
+
+                $.ajax({
+                    url: "../../functions/Pastas/creaAnalisis.php",
+                    type: "post",
+                    data: formDat,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(result){
+                        if(result=="1"){
+                            location.href="analisis-Pastas.php"
+                        }else{
+                            location.href="../../presentacion/nodisponible.html"
+                        }
+                    }
+                });
+            });
+    });
+
+    $(function() {
+
+        $('#dropzone').on('dragover', function() {
+            $(this).addClass('hover');
+        });
+
+        $('#dropzone').on('dragleave', function() {
+            $(this).removeClass('hover');
+        });
+
+        $('#dropzone input').on('change', function(e) {
+            var file=this.files;
+
+            $('#dropzone').removeClass('hover');
+
+
+
+            $('#dropzone').addClass('dropped');
+            $('#dropzone img').remove();
+
+            for(var i=0; i<this.files.length; i++){
+                var cont=arch.length;
+                arch[cont]=this.files[i];
+            }
+
+
+
+            for(var i=0; i<this.files.length; i++){
+                if (this.accept && $.inArray(file[i].type, this.accept.split(/, ?/)) == -1) {
+                    return alert('File type not allowed.');
+                }
+                if ((/^image\/(gif|png|jpeg)$/i).test(file[i].type)) {
+                    var currFile=file[i];
+                    var FileName=currFile.name;
+
+
+                    var reader = new FileReader();
+
+                    // reader.readAsDataURL(file[i]);
+                    reader.onload=(function(theFile){
+                        var fileName=theFile.name;
+                        return function (e) {
+                            // body...
+                            var n=fileName.length - 4;
+                            var nombre= fileName.slice(0,n);
+                            var hash = hex_md5(nombre);
+
+                            var respaldo=document.getElementById("lista_imagenes").innerHTML;
+                            document.getElementById("lista_imagenes").innerHTML =respaldo+['<div class="imgcontainer" id="'+hash+'"><img class="thumb preshow" onmouseover="hov(this)"  name="'+fileName+'" src="', e.target.result,'" width="200" height="125" title="'+ fileName+'"/><div id="'+fileName+'" name="'+fileName+'" class="delete" onmouseleave="unhov(this)" onclick="eliminar(this)"><img src="eliminar.png" width="60" height="60" style="opacity:0.7; vertical-align:middle;" title="Eliminar"></div></div>'].join('');
+                        }
+                    })(currFile);
+                    reader.readAsDataURL(currFile);
+                } else {
+                    var ext = file[i].name.split('.').pop();
+
+                    $('#dropzone div').html(ext);
+                }
+            }
+
+        });
+    });
+
+    function hov(element){
+        document.getElementById(element.name).style.display = "block";
+    }
+    function unhov(element){
+        document.getElementById(element.id).style.display = "none";
+    }
+    function eliminar(element){
+        //alert(element.id);
+        for(var i=0; i<arch.length;i++){
+            if(arch[i].name==element.id){
+                arch.splice(i, 1);
+
+                var n=element.id.length - 4;
+                var nombre= element.id.slice(0,n);
+                var hash = hex_md5(nombre);
+
+                var id="#"+hash;
+                $(id).remove();
+                break;
+            }
+        }
+    }
     </script>
 
 </body>
