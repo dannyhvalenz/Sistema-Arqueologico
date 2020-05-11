@@ -57,7 +57,7 @@
 				</div>
 				<div class="modal-body">
 					<p>
-                    <?php $reasons = array("existe" => "Ya existe un usuario con estos datos"
+                    <?php $reasons = array("existe" => "Ya existe un coteo con estos datos"
 								, "errorconexion" => "Error de conexion con la base de datos"); 
 							if ($_GET["conteoFallido"]) 	
 								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 

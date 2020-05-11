@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="../Admin/inicioAdministrador.php">Usuarios</a>
+                    <a class="nav-link" href="../Usuario/inicioAdministrador.php">Usuarios</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="../Pastas/analisis-Pastas-Admin.php">Análisis de Pastas</a>
