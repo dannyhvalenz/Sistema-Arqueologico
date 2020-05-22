@@ -281,7 +281,7 @@
                         if(result=="1"){
                             location.href="analisis-Pastas.php"
                         }else{
-                            location.href="../../presentacion/nodisponible.html"
+                            
                         }
                     }
                 });
@@ -302,9 +302,6 @@
             var file=this.files;
 
             $('#dropzone').removeClass('hover');
-
-
-
             $('#dropzone').addClass('dropped');
             $('#dropzone img').remove();
 
@@ -313,19 +310,14 @@
                 arch[cont]=this.files[i];
             }
 
-
-
             for(var i=0; i<this.files.length; i++){
                 if (this.accept && $.inArray(file[i].type, this.accept.split(/, ?/)) == -1) {
-                    return alert('File type not allowed.');
+                    return alert('Tipo de archivo no permitido.');
                 }
-                if ((/^image\/(gif|png|jpeg)$/i).test(file[i].type)) {
+                if ((/^image\/(png|jpeg)$/i).test(file[i].type)) {
                     var currFile=file[i];
                     var FileName=currFile.name;
-
-
                     var reader = new FileReader();
-
                     // reader.readAsDataURL(file[i]);
                     reader.onload=(function(theFile){
                         var fileName=theFile.name;
@@ -361,11 +353,9 @@
         for(var i=0; i<arch.length;i++){
             if(arch[i].name==element.id){
                 arch.splice(i, 1);
-
                 var n=element.id.length - 4;
                 var nombre= element.id.slice(0,n);
                 var hash = hex_md5(nombre);
-
                 var id="#"+hash;
                 $(id).remove();
                 break;

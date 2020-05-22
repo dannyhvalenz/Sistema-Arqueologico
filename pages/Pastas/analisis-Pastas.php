@@ -15,7 +15,15 @@
     <link rel="stylesheet" type="text/css" href="../../other/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    
+    
     <style>
+		
+		.modal-content{
+			position: absolute;
+			display: inline-flex;
+		}
+		
         @media screen and (max-width: 320px) {
              table {
                display: block;
@@ -107,7 +115,32 @@
             </div>
         </div>
     </div>
-
+	<!-- MODAL PARA MOSTRAR IMAGENES CON CARRUSEL -->
+   <div class="container text-center">
+		<!-- Large modal -->
+		<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-lg">
+				<div class="modal-content">
+		  			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">	
+		  				<div class="carousel-inner" id="imagenes"><!--:V super id-->
+		  					<div class="item active">
+		  						<img class="img-responsive" src="imagenes/cargando2.gif" alt="...">
+		  					</div>
+		  				</div>
+					</div>
+					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>	
+			  	
+				 
+				</div>
+			  </div>
+		</div>
+	</div>
+   
     <!--TITULO-->
     <div class="container-fluid text-center">
         <h1><b>Análisis de Pastas</b></h1>
@@ -145,6 +178,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <script>
+		function agregarImagenes(elemento){//esta función llama las imagenes de un registro
+			//alert(elemento.id);
+			$('#imagenes').html('<div class="item active"> <img class="img-responsive" src="imagenes/cargando2.gif" alt="..."> </div>');
+			$.ajax({
+				url: "archivos.php",
+				method: "POST",
+				data: { 'id': elemento.id	},
+				success: function(archi){
+					$('#imagenes').html('<div class="item active"> <img class="img-responsive" src="imagenes/cargando2.gif" alt="..."> </div>');
+					var jsonparse = JSON.parse(archi);
+					//alert (jsonparse);
+					var cadena = "";
+					//alert (elemento.id);
+					for(var i=2; i<jsonparse.length;i++){
+						if( jsonparse[i] != "." && jsonparse[i] != "..") {
+							var ruta = 'imagenes/'+elemento.id+'/'+jsonparse[i];
+							//alert (ruta);
+							cadena = '<div class="item"> <img class="img-responsive" src="'+ruta+'" ></div>';
+							$('#imagenes').append(cadena);
+						}
+					}
+				}
+			});
+		}
     $(document).ready(function() {
 
         load_data();
@@ -158,9 +215,22 @@
                 },
                 success: function(data) {
                     $('#result').html(data);
+					$.ajax({
+						url: "obtenerId.php",
+						method: "POST",
+						success: function(result){
+							//alert(result);
+							var arreglo = result.split("/");
+							//alert(arreglo[1]);
+							for(var i=1;i<arreglo.length;i++){
+								document.getElementById(arreglo[i]).innerHTML='<a onclick="agregarImagenes(this)" value="'+arreglo[i]+'"data-toggle="modal" data-toggle="modal" data-target=".bs-example-modal-lg" data-id="'+arreglo[i]+'" class="btn btn-primary  glyphicon glyphicon-picture" id="'+arreglo[i]+'"></a>';
+							}
+						}
+					});
                 }
             });
         }
+		
         $('#search_text').keyup(function() {
             var search = $(this).val();
             if (search != '') {

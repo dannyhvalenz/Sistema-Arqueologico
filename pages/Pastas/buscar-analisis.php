@@ -1,4 +1,5 @@
 <?php
+	session_start();
     //fetch.php
     require ('../../functions/conexion/conexion.php');
 
@@ -24,7 +25,7 @@
         if(mysqli_num_rows($result) > 0) {
             $output .= '
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tableDinamica">
                         <thead>
                             <tr style="padding: 5px, 10px">
                                 <th>ID</th>
@@ -73,8 +74,10 @@
                             </td>
                             <td><a href="#" data-href="../../functions/Pastas/eliminarAnalisis.php?IdAnalisisPastas='.$row["IdAnalisisPastas"].'"
                                 data-toggle="modal" data-target="#confirm-delete"class="btn btn-danger  glyphicon glyphicon-remove" id="eliminar"></a></td>
+							<td id="'.$row["IdAnalisisPastas"].'"></td>
                         </tr>
                 ';
+				//$_SESSION['idRegistro']=$row["IdAnalisisPastas"];
             }
             echo $output;
         } else {
