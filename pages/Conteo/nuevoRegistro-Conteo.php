@@ -29,6 +29,10 @@
     .col-6 {
         padding-top: 10px;
     }
+	.modal-content{
+		position: absolute;
+		display: inline-flex;
+	}
     </style>
 </head>
 

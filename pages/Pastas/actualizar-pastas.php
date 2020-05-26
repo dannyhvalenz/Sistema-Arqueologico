@@ -1,5 +1,17 @@
 <?php 
     require ('../../functions/conexion/conexion.php');
+	//$IdAnalisisPastas = $_GET['IdAnalisisPastas'];//debo de tomar el id
+	/*if (!empty($_FILES)) { //preguntas si hay archivos
+		$carpeta='imagenes/'.$IdAnalisisPastas.'/';
+		if (is_dir($carpeta)){ //existe el directorio
+			move_uploaded_file($_FILES["file"]["tmp_name"], $carpeta.$_FILES['file']['name']);
+			echo 'Ya existia la carpeta';
+		}else{
+			mkdir($carpeta, 0777, true); //crea la carpeta
+			move_uploaded_file($_FILES["file"]["tmp_name"], $carpeta.$_FILES['file']['name']);
+			echo 'No existia la carpeta.';
+		}
+	}*/
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +40,10 @@
     <link rel="stylesheet" href="../../other/dropzone/dropzone.css">
     
     <style>
+		.modal-content{
+			position: absolute;
+			display: inline-flex;
+		}
 		#carouselExampleControls{
 			height: 300px !important;
 			width: 700px !important;
@@ -38,15 +54,36 @@
 <body>
     <!--VERIFICA QUE ESTE LA SESION ACTIVA-->
     <?php
-        
         session_start();
-
         if(isset($_SESSION['usuario'])){                   
         }else{
             header("Location:login.php");
         }
     ?>
-
+    <!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+                    <h4 class="modal-title">Conteo Fallido</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>
+                    <?php $reasons = array("existe" => "Ya existe un conteo con estos datos"
+								, "errorconexion" => "Error de conexion con la base de datos"); 
+							if ($_GET["analisisFallido"]) 	
+								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
+						?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,9 +111,7 @@
                             $sqlUser = "
                                 SELECT * FROM usuarios WHERE usuario='$user'
                             ";
-
                             $result = mysqli_query($conexion, $sqlUser);
-
                             if(mysqli_num_rows($result) > 0){
                                 while($row = mysqli_fetch_array($result)){
                                     echo $row['nombre'] . " " .$row['apellido'];
@@ -96,12 +131,12 @@
     </nav>
 
     <div class="container-fluid text-center" style="margin-bottom:20px">
-        <h2>Actualizar Conteo de Colección</h2>
+        <h2>Actualizar Análisis de Pastas</h2>
     </div>
 
     <?php
         $IdAnalisisPastas = $_GET['IdAnalisisPastas'];
-    
+ 
         $sql = "
             SELECT * FROM analisispastas WHERE IdAnalisisPastas='$IdAnalisisPastas'
         ";
@@ -109,18 +144,9 @@
         $resultado = mysqli_query($conexion, $sql);
         $row = mysqli_fetch_array($resultado);
     ?>
-
-   
-   	<div class="container" style="min-height:72vh">
+   	<div class="container" >
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p>
-        <form action="upload.php" class="dropzone files-container form-horizontal" enctype="multipart/form-data" >
-                        <div class="fallback" >
-                            <input name="file" type="file" multiple accept=".jpg, .png"/>
-                        </div>
-        </form>
-        
-       
         <form class="form-horizontal validate-form needs-validation" novalidate action="../../functions/Pastas/actualizarAnalisis.php" method="POST"
             enctype="multipart/form-data" autocomplete="off">
             <div class="container">
@@ -225,13 +251,119 @@
                 <a href="../../pages/Pastas/analisis-Pastas.php" type="submit" name="registrar" class="btn btn-danger" style="margin-right:20px">Cancelar
                     Registro</a>
             </div>
-        </form>
-
+        </form>       
     </div>
-   	
+	<div class="container" >
+		<div class="col-sm-4">
+			<div class="container" >
+		<form method="post" id="formImagen" name="formularioImg" enctype="multipart/form-data">
+			<input id="<?php echo $IdAnalisisPastas; ?>"/>
+			<input name="imagenPlanta" id="imagenPlanta" type="file" multiple accept=".jpg, .png" onchange="agregarImagenes(<?php echo $IdAnalisisPastas; ?>)"/> <!--onclick="agregarImagenes(<//?php echo $IdAnalisisPastas; ?>)"-->
+			<input type="submit" class="btn btn-success" value="Subir"/>
+		</form>
+	</div>
+		</div>
+		</div>
+       <div class="container" >
+        <div class="row text-center">
+				<?php
+					$directorio='imagenes/'.$IdAnalisisPastas;
+					//$.ajax({	
+						if (is_dir($directorio)){
+							$carpeta = scandir($directorio);
+							if (count($carpeta) > 2){
+								$dirint = dir($directorio);
+								while (($archivo = $dirint->read()) !== false){
+									if( $archivo != "." && $archivo != "..") {
+										echo '<div class="col-sm-3 text-center" style="margin-bottom:10px;">';
+										echo '<img src="'.$directorio."/".$archivo.'" width="225" height="265">'."\n";
+										echo '<a class="btn btn-link" style="color: #07A81C;"  href="actualizar-pastas.php?IdAnalisisPastas='.$IdAnalisisPastas.'&remove='.$directorio."/".$archivo.'">Eliminar</a>';
+										echo '</div>';
+									}
+								}
+								$dirint->close();
+							}else{
+								echo 'El directorio existe, pero agrega imagenes.';
+							}
+						}else{
+							 echo 'El directorio no existe, agrega imagenes para crear el directorio.';
+							//$directorio='imagenes/'.$IdAnalisisPastas.'/';
+							//echo $directorio;
+							echo $IdAnalisisPastas;
+						}
+					//});
+					if (isset($_GET['remove'])) {
+						echo $directorio;
+						//$directorio='imagenes/'.$IdAnalisisPastas.'/';
+						if (file_exists($_GET['remove'])) {
+							unlink($_GET['remove']);
+							/*$IdAnalisisPastas = $_POST['IdAnalisisPastas'];
+							header("Location:../../pages/Pastas/actualizar-pastas.php?IdAnalisisPastas=".$IdAnalisisPastas);*/
+						}else{
+							echo 'No existe archivo';
+							/*$IdAnalisisPastas = $_GET['IdAnalisisPastas'];
+							header("Location:../../pages/Pastas/actualizar-pastas.php?IdAnalisisPastas=".$IdAnalisisPastas);*/
+						} 
+						//echo $_GET['remove'];
+					}
+				?>
+			
+    	</div>
+	</div>	
     <footer class="card-footer text-muted absolute-bottom" style="margin-top:20px">
         Este es un proyecto para el gestionamiento de datos arqueológicos
     </footer>
+	<script>
+	function agregarImagenes(id){
+		//alert(id);
+		var idRegistro = id;
+		//alert (idRegistro);
+	  	//var agregarImg = $('#agregarImg').val();
+	   	$.ajax({
+			   type: 'POST',
+			   url: "edicionAgregarImagenes.php",
+			   data: {'idRegistro':idRegistro},
+			   success: function(result){
+				   //do something here with return value like alert
+				   alert (result); //regresa la ruta imagenes/$IdAnalsisis/
+				   var ruta = result; //regresa la ruta imagenes/$IdAnalsisis/
+				   
+						$("#formImagen").on("submit", function(e){ //id="formImagen" imagenPlanta
+							e.preventDefault();
+							var f = $(this);
+							var formData = new FormData(document.getElementById("formImagen"));
+							//var idruta = document.getElementById("formImagen");
+							alert (ruta);
+							var params = {
+								ruta: ruta, //aqui defines el valor del parametro
+								formData
+							};
+							//var ruta = new Inpu
+							//formData.append("dato", "valor");
+							//formData.append(f.attr("name"), $(this)[0].files[0]);
+							$.ajax({
+								url: "guardarImagenes.php",
+								type: "post",
+								dataType: "html",
+								data: formData,
+								cache: false,
+								contentType: false,
+								processData: false,
+								success: function(datos){
+									alert (datos);
+									/*if(datos!="0"){
+										var cadena = '<div class="carousel-item"><img class="d-block w-100" src="'+result+'"></div>';
+										$("#imagenesCarusel").append(cadena);
+									}*/
+								}
+							});
+						});
+
+			   }
+		})
+	}
+	</script>
+
 
     <script src="../../js/main.js"></script>
     <!-- jQuery -->
@@ -244,7 +376,8 @@
     <!-- Hierarchy Select Js -->
     <script src="../../js/hierarchy-select.min.js"></script>
     <script src="../../js/validarcampos.js"></script>
-    
+    <!-- -->
+    <script src="dropzone-configuracion.js"></script>	
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
     $('textarea').each(function() {
@@ -254,6 +387,15 @@
         this.style.height = (this.scrollHeight) + 'px';
     });
     </script>
+    <!--SCRIPT PARA QUE SE MUESTRE EL MENSAJE DE ERROR EN EL MODAL-->
+    <script type="text/javascript">
+		var url = window.location.href;
+		if(url.indexOf('?analisisFallido=true&reason=errorconexion') != -1 || url.indexOf('?analisisFallido=true&reason=existe') != -1) {
+            $('#myModal').modal('show');
+		} else {
+			$('#myModal').modal('hide');
+		}
+	</script>
 </body>
 
 </html>
