@@ -54,31 +54,6 @@
             header("Location:../../pages/Login/login.php");
         }
     ?>
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-                    <h4 class="modal-title">Análisis Fallido</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<p>
-                    <?php $reasons = array("existe" => "Ya existe un análisis con estos datos"
-								, "errorconexion" => "Error de conexion con la base de datos"); 
-							if ($_GET["analisisFallido"]) 	
-								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
-						?>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -323,6 +298,7 @@
                         if(result=="1"){
                             location.href="analisis-Pastas.php"
                         }else{
+							//location.href="analisis-Pastas.php"
 							location.href="nuevoRegistro-Pastas.php"
                         }
                     }

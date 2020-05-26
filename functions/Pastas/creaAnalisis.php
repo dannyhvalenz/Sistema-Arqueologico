@@ -27,9 +27,7 @@
                 '$Sitio', '$Patron', '$Utme', '$Utmn', '$Latitud', '$Analizo', '$Bolsa', '$Tipo',
                 '$Tratamiento','$Modificacion','$FormasTratamientos','$Peso','$TotalFragmentos', 
                 '$Observaciones', '$Estado')";
-
-			$resultado=mysqli_query($conexion, $sql);	
-
+			$resultado=mysqli_query($conexion, $sql);			
 			if($resultado==true){   
 				$id_insert = mysqli_insert_id($conexion);
 				$uploadDir = '../../pages/Pastas/imagenes/'.$id_insert;
@@ -49,13 +47,6 @@
 				//header("location: ../../pages/presentacion/nodisponible.html");
 				/*die(header("Location:../../pages/Pastas/nuevoRegistro-Pastas.php?analisisFallido=true&reason=errorconexion"));*/
 			}
-		}
-	/*}else{
-		die(header("Location:../../pages/Pastas/nuevoRegistro-Pastas.php?analisisFallido=true&reason=errorconexion"));
-	}*/
-	/*}else{
-		header("Location: ../../pages/Pastas/analisis-Pastas.php");
-	}*/
     //mysqli_free_result($resultado);
 	//mysqli_free_result($existe);
     mysqli_close($conexion);
