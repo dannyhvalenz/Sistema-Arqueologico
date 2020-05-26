@@ -32,11 +32,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="../../other/dropzone/dropzone.css">
     <script src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
+	<!--<script type="text/javascript" src="validarRegitroAnalisis.js"></script>-->
+    
     <style>
     .col-6 {
         padding-top: 10px;
     }
+		
     </style>
+    
 </head>
 
 <body>
@@ -50,6 +54,30 @@
             header("Location:../../pages/Login/login.php");
         }
     ?>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+                    <h4 class="modal-title">Análisis Fallido</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>
+                    <?php $reasons = array("existe" => "Ya existe un análisis con estos datos"
+								, "errorconexion" => "Error de conexion con la base de datos"); 
+							if ($_GET["analisisFallido"]) 	
+								echo "<span style='color:red;'>". $reasons[$_GET["reason"]] . "</span>"; 
+						?>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: #36622C">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -102,14 +130,14 @@
 
 
     <div class="container-fluid text-center" style="margin-bottom:20px">
-        <h2>Agregar Conteo de Colección</h2>
+        <h2>Agregar Análisis de Pastas</h2>
     </div>
     <div class="container" style="min-height:72vh">
         <h2>Ingresar los datos</h2>
         <p>Debe de ingresar los datos correctamente:</p><br>
         
         
-        <form class="form-horizontal validate-form needs-validation" id="formDatos" novalidate method="POST"
+        <form class="form-horizontal validate-form needs-validation" id="formDatos" method="POST"
             enctype="multipart/form-data" autocomplete="off">
             <div class="container">
                 <div class="row">
@@ -199,12 +227,17 @@
                         <input class="form-control" type="number" max="9999" min="0" maxlength="4" minlength="0"
                             placeholder="Total de fragmentos" name="TotalFragmentos" id="TotalFragmentos" required >
                     </div>
-                   
-                    <div class="col-4">
-                        <label for="comment">Observaciones</label>
-                        <textarea class="form-control" rows="1" id="comment" max="250" min="0" maxlength="250" minlength="0"
-                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required></textarea>
+                   <div class="col-4">
+                        <label>Observaciones</label>
+                        <input class="form-control" type="text" rows="2" max="70" min="0" maxlength="70" minlength="0"
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" required >
                     </div>
+                    <!--<div class="col-4">
+                        <label >Observaciones</label>
+                        <textarea class="form-control is-valid" rows="1" id="comment" max="50" min="0" maxlength="50" minlength="0"
+                            placeholder="Observaciones" name="Observaciones" id="Observaciones" style="font-size: 10pt;" required></textarea>
+                            
+                    </div>-->
 
                 </div>
             </div>
@@ -212,7 +245,7 @@
         </form><br>
         <div id="dropzone">
           <div>Arrastra las imagenes aquí</div>
-          <input type="file" id="campofichero" multiple accept="image/png, image/jpg" />
+          <input type="file" id="campofichero" multiple accept="image/jpg, image/png" />
           
         </div>
         <div id="lista_imagenes"></div>
@@ -243,9 +276,18 @@
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
+     <!--SCRIPT PARA QUE SE MUESTRE EL MENSAJE DE ERROR EN EL MODAL-->
+    <script type="text/javascript">
+		var url = window.location.href;
+		if(url.indexOf('?analisisFallido=true&reason=errorconexion') != -1 || url.indexOf('?analisisFallido=true&reason=existe') != -1) {
+            $('#myModal').modal('show');
+		} else {
+			$('#myModal').modal('hide');
+		}
+	</script>
     <!--SCRIPT PARA QUE EL TEXT AREA SE EXPANDA CONFORME SE LLENE-->
     <script>
     $('textarea').each(function() {
@@ -281,7 +323,7 @@
                         if(result=="1"){
                             location.href="analisis-Pastas.php"
                         }else{
-                            
+							location.href="nuevoRegistro-Pastas.php"
                         }
                     }
                 });
@@ -302,6 +344,7 @@
             var file=this.files;
 
             $('#dropzone').removeClass('hover');
+
             $('#dropzone').addClass('dropped');
             $('#dropzone img').remove();
 
@@ -311,13 +354,16 @@
             }
 
             for(var i=0; i<this.files.length; i++){
-                if (this.accept && $.inArray(file[i].type, this.accept.split(/, ?/)) == -1) {
+                /*if (this.accept && $.inArray(file[i].type, this.accept.split(/, ?/)) == -1) {
                     return alert('Tipo de archivo no permitido.');
-                }
-                if ((/^image\/(png|jpeg)$/i).test(file[i].type)) {
+                }*/
+                if ((/^image\/(jpg|png|jpeg)$/i).test(file[i].type)) {
                     var currFile=file[i];
                     var FileName=currFile.name;
+
+
                     var reader = new FileReader();
+
                     // reader.readAsDataURL(file[i]);
                     reader.onload=(function(theFile){
                         var fileName=theFile.name;
@@ -353,9 +399,11 @@
         for(var i=0; i<arch.length;i++){
             if(arch[i].name==element.id){
                 arch.splice(i, 1);
+
                 var n=element.id.length - 4;
                 var nombre= element.id.slice(0,n);
                 var hash = hex_md5(nombre);
+
                 var id="#"+hash;
                 $(id).remove();
                 break;
@@ -363,7 +411,146 @@
         }
     }
     </script>
-
+	<script type="text/javascript">
+		//Tipo Bolsa Analizo Latitud Utmn Utme Patron Cuadrante
+		$('#Fecha').on('focusout',function(){
+			var fecha = $(this).val();
+			if(fecha.length == 0 || fecha==null){
+				$('#Fecha').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Fecha').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Cuadrante').on('focusout',function(){
+			var Cuadrante = $(this).val();
+			if(Cuadrante.length == 0 || Cuadrante==null){
+				$('#Cuadrante').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Cuadrante').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Sitio').on('focusout',function(){
+			var Sitio = $(this).val();
+			if(Sitio.length == 0 || Sitio==null){
+				$('#Sitio').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Sitio').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Patron').on('focusout',function(){
+			var Patron = $(this).val();
+			if(Patron.length == 0 || Patron==null){
+				$('#Patron').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Patron').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Utme').on('focusout',function(){
+			var Utme = $(this).val();
+			if(Utme.length == 0 || Utme==null){
+				$('#Utme').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Utme').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Utmn').on('focusout',function(){
+			var Utmn = $(this).val();
+			if(Utmn.length == 0 || Utmn==null){
+				$('#Utmn').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Utmn').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Latitud').on('focusout',function(){
+			var Latitud = $(this).val();
+			if(Latitud.length == 0 || Latitud==null){
+				$('#Latitud').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Latitud').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Analizo').on('focusout',function(){
+			var Analizo = $(this).val();
+			if(Analizo.length == 0 || Analizo==null){
+				$('#Analizo').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Analizo').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Bolsa').on('focusout',function(){
+			var Bolsa = $(this).val();
+			if(Bolsa.length == 0 || Bolsa==null){
+				$('#Bolsa').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Bolsa').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Tipo').on('focusout',function(){
+			var Tipo = $(this).val();
+			if(Tipo.length == 0 || Tipo==null){
+				$('#Tipo').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Tipo').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Tratamiento').on('focusout',function(){
+			var Tratamiento = $(this).val();
+			if(Tratamiento.length == 0 || Tratamiento==null){
+				$('#Tratamiento').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Tratamiento').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Modificacion').on('focusout',function(){
+			var Modificacion = $(this).val();
+			if(Modificacion.length == 0 || Modificacion==null){
+				$('#Modificacion').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Modificacion').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#FormasTratamientos').on('focusout',function(){
+			var FormasTratamientos = $(this).val();
+			if(FormasTratamientos.length == 0 || FormasTratamientos==null){
+				$('#FormasTratamientos').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#FormasTratamientos').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Peso').on('focusout',function(){
+			var Peso = $(this).val();
+			if(Peso.length == 0 || Peso==null){
+				$('#Peso').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Peso').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#TotalFragmentos').on('focusout',function(){
+			var totalFragmentos = $(this).val();
+			if(totalFragmentos.length == 0 || totalFragmentos==null){
+				$('#TotalFragmentos').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#TotalFragmentos').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		$('#Observaciones').on('focusout',function(){
+			var texto = document.getElementById('Observaciones').value;
+			//var observaciones = $(this).val();
+			if(texto.length == 0 || texto==null){
+				$('#Observaciones').addClass('is-invalid').removeClass('is-valid');
+			}else{
+				$('#Observaciones').addClass('is-valid').removeClass('is-invalid');
+			}
+		});
+		/*function valtxtarea() {
+		  var val = document.getElementById('Observaciones').value;
+		  if (val.length == 0 || val==null) {
+			$('#TotalFragmentos').addClass('is-invalid').removeClass('is-valid');
+		  }else{
+				$('#TotalFragmentos').addClass('is-valid').removeClass('is-invalid');
+		  }
+		}*/
+	</script>
 </body>
 
 </html>
