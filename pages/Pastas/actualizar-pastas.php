@@ -247,7 +247,7 @@
                 </div>
             </div>
             <div class="col d-flex flex-row-reverse" style="margin-top:20px">
-                <input type="submit" class="btn btn-success" value="Guardar Registro">
+                <input type="submit" class="btn btn-success" value="Actualizar Registro">
                 <a href="../../pages/Pastas/analisis-Pastas.php" type="submit" name="registrar" class="btn btn-danger" style="margin-right:20px">Cancelar
                     Registro</a>
             </div>
