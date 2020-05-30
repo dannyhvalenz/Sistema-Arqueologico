@@ -315,46 +315,32 @@
     </footer>
 	<script>
 	function agregarImagenes(id){
-		//alert(id);
 		var idRegistro = id;
-		//alert (idRegistro);
-	  	//var agregarImg = $('#agregarImg').val();
 	   	$.ajax({
 			   type: 'POST',
-			   url: "edicionAgregarImagenes.php",
+			   url: "edicionAgregarImagenes.php", //hasta aqui es igual
 			   data: {'idRegistro':idRegistro},
 			   success: function(result){
-				   //do something here with return value like alert
 				   alert (result); //regresa la ruta imagenes/$IdAnalsisis/
 				   var ruta = result; //regresa la ruta imagenes/$IdAnalsisis/
-				   
-						$("#formImagen").on("submit", function(e){ //id="formImagen" imagenPlanta
+						$("#formImagen").on("submit", function(e){ //id="formImagen" imagenPlanta ///hasta aqui es igual
 							e.preventDefault();
 							var f = $(this);
-							var formData = new FormData(document.getElementById("formImagen"));
-							//var idruta = document.getElementById("formImagen");
+							var fd = new FormData();
+							fd.append('file', $('')[0]
+									  'document.getElementById("formImagen"));
+							fd.append('CustomerId', result);
 							alert (ruta);
-							var params = {
-								ruta: ruta, //aqui defines el valor del parametro
-								formData
-							};
-							//var ruta = new Inpu
-							//formData.append("dato", "valor");
-							//formData.append(f.attr("name"), $(this)[0].files[0]);
 							$.ajax({
 								url: "guardarImagenes.php",
 								type: "post",
 								dataType: "html",
-								data: formData,
+								data: fd,
 								cache: false,
 								contentType: false,
 								processData: false,
 								success: function(datos){
 									alert (datos);
-									/*if(datos!="0"){
-										var cadena = '<div class="carousel-item"><img class="d-block w-100" src="'+result+'"></div>';
-										$("#imagenesCarusel").append(cadena);
-									}*/
 								}
 							});
 						});
@@ -363,8 +349,6 @@
 		})
 	}
 	</script>
-
-
     <script src="../../js/main.js"></script>
     <!-- jQuery -->
     <script src="../../other/jquery/jquery-3.3.1.min.js"></script>
